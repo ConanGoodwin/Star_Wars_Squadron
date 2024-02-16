@@ -1,11 +1,14 @@
 // import React from 'react'
-import PropTypes from 'prop-types'
-import { PilotDamegdShieldImg, PilotHullImg, PilotNoHullImg, PilotNoShieldImg, PilotShieldImg } from '../assets'
-// import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { 
+  PilotDamegdShieldImg,
+  PilotHullImg, 
+  PilotNoHullImg, 
+  PilotNoShieldImg, 
+  PilotShieldImg } from '../assets';
 
-function PilotShield({shieldValue, changeLifeChip}) {
+function PilotShield({shieldValue, hullValue, changeLifeChip}) {
   const array = [1, 2, 3, 4, 5, 6];
-  // const [lifeShip, setLifeShip] = useState(shieldValue);
 
   const ShildClick = ({target}) => {
     if (target.src === "http://localhost:5173/src/assets/status_dameged/damagedshield.png") {
@@ -38,7 +41,7 @@ function PilotShield({shieldValue, changeLifeChip}) {
           <section key={index} id={index}>
             <img
               id={index}
-              src={(index < 3) ? PilotHullImg : PilotNoHullImg}
+              src={(index < hullValue) ? PilotHullImg : PilotNoHullImg}
               alt=""
             />
           </section>
@@ -50,6 +53,7 @@ function PilotShield({shieldValue, changeLifeChip}) {
 
 PilotShield.propTypes = {
   shieldValue: PropTypes.number.isRequired,
+  hullValue: PropTypes.number.isRequired,
   changeLifeChip: PropTypes.func.isRequired,
 }
 
