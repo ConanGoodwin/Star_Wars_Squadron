@@ -1,7 +1,7 @@
 // import React from 'react'
 import PropTypes from 'prop-types'
 import { PilotDamegdShieldImg, PilotHullImg, PilotNoHullImg, PilotNoShieldImg, PilotShieldImg } from '../assets'
-import { useState } from 'react';
+// import { useState } from 'react';
 
 function PilotShield({shieldValue, changeLifeChip}) {
   const array = [1, 2, 3, 4, 5, 6];
