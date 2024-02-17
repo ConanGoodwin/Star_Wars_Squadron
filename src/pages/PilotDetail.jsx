@@ -40,8 +40,8 @@ function PilotDetail() {
   };
 
   return (
-    // COLUNA DE ESCUDOS
     <main className={PilotDetailStyle.main}>
+      {/* COLUNA DE ESCUDOS */}
       <section>
         <PilotShield 
           shieldValue={ shieldShip } 
@@ -50,48 +50,41 @@ function PilotDetail() {
         />
       </section>
 
-      {/* PRIMEIRA COLUNA DE UPDATE */}
       <section className={PilotDetailStyle.main_section}>
+         {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           Ship Life: {lifeShip}
           <TxtArea />
           <TxtArea />
         </div>
+
+         {/* PRIMEIRA COLUNA DE UPDATE */}
         <div className={PilotDetailStyle}>
           {
-            pilot.shipUpdates.map((updates, index) => {
-                return (
-                  <div key={index} className={PilotDetailStyle.flex_row}>
-                    {
-                      updates.map((update, iUpdate) => {
-                          return (
-                            <div key={iUpdate}>
-                              {
-                                Object.values(update).map((cards,iCard) => {
-                                    return (
-                                      <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
-                                        {
-                                          cards.map((card, i) => (
-                                              <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(updates)[0]} />
-                                            )
-                                          )
-                                        }
-                                      </div>
-                                    )
-                                  }
+            pilot.shipUpdates.map((updates, index) => (
+              <div key={index} className={PilotDetailStyle.flex_row}>
+                {
+                  updates.map((update, iUpdate) => (
+                    <div key={iUpdate}>
+                      {
+                        Object.values(update).map((cards,iCard) => (
+                          <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                            {
+                              cards.map((card, i) => (
+                                  <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(updates)[0]} />
                                 )
-                              }
-                              {Object.keys(update)[0]}: 1/2
-                            </div>
-                          )
-                        }
-                      )
-                    }
-                  </div>
-                )
-              }
-            )
+                              )
+                            }
+                          </div>
+                        ))
+                      }
+                      {Object.keys(update)[0]}: 1/2
+                    </div>
+                  ))
+                }
+              </div>
+            ))
           }
         </div>
 
