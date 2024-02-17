@@ -2,7 +2,7 @@
 // import PropTypes from 'prop-types'
 import {PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
-import { LukeSkywalker } from '../assets'
+import { AtiradorImg, BombasImg, Droids, EliteImg, LukeSkywalker, MisseisImg, TorpedosImg, TorresImg } from '../assets'
 import { useState } from 'react';
 
 function PilotDetail() {
@@ -26,7 +26,7 @@ function PilotDetail() {
 
   return (
     <main className={PilotDetailStyle.main}>
-      <section className={PilotDetailStyle.lateral_section}>
+      <section>
         <PilotShield 
           shieldValue={ pilot.shipShield + shieldExtra } 
           hullValue={ pilot.shipHull + hullExtra }
@@ -34,31 +34,34 @@ function PilotDetail() {
         />
       </section>
       <section className={PilotDetailStyle.main_section}>
-        <div className={PilotDetailStyle.main_pilot_stats}>
-          <PilotCard image={LukeSkywalker} />
+        <div className={PilotDetailStyle.flex_column}>
+          <PilotCard image={LukeSkywalker} typeCard="pilot" />
           Ship Life: {lifeShip}
           <TxtArea />
           <TxtArea />
         </div>
-        <div className={PilotDetailStyle.main_pilot_stats}>
-          <div className={PilotDetailStyle.cards_update}>
-            <PilotCard image={LukeSkywalker} />
-            <PilotCard image={LukeSkywalker} />
+        <div className={PilotDetailStyle}>
+          <div className={PilotDetailStyle.flex_row}>
+            <PilotCard image={Droids} typeCard="update" txtAltImg="droid" />
+            <PilotCard image={TorresImg} />
           </div>
-          <div className={PilotDetailStyle.cards_update}>
-            <PilotCard image={LukeSkywalker} />
-            <PilotCard image={LukeSkywalker} />
+          <div className={PilotDetailStyle.flex_row}>
+            <PilotCard image={EliteImg} />
+            <PilotCard image={AtiradorImg} />
           </div>
-          cartas
+          <div className={PilotDetailStyle.flex_row}>
+            <PilotCard image={TorpedosImg} />
+            <PilotCard image={MisseisImg} />
+          </div>
         </div>
         <div>
           <div>
-            gabarito
-            <PilotCard image={LukeSkywalker} />
+            <PilotCard image={null} txtAltImg="gabarito" />
+            <PilotCard image={null} txtAltImg="gabarito" />
           </div>
-          <div className={PilotDetailStyle.cards_update}>
+          <div className={PilotDetailStyle.flex_row}>
             <div>
-              <PilotCard image={LukeSkywalker} />
+              <PilotCard image={BombasImg} />
             </div>
             <div>
               <div>

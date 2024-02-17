@@ -1,3 +1,15 @@
-.container {
+.display_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pilot {
+  display: flex;
   width: 7cm;
+}
+
+.update {
+  width: 4.3cm;
+  height: 6.8cm;
 }
