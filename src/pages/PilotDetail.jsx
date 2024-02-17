@@ -40,6 +40,7 @@ function PilotDetail() {
   };
 
   return (
+    // COLUNA DE ESCUDOS
     <main className={PilotDetailStyle.main}>
       <section>
         <PilotShield 
@@ -48,6 +49,8 @@ function PilotDetail() {
           changeLifeChip={changeLifeChip}
         />
       </section>
+
+      {/* PRIMEIRA COLUNA DE UPDATE */}
       <section className={PilotDetailStyle.main_section}>
         <div className={PilotDetailStyle.flex_column}>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
@@ -57,49 +60,42 @@ function PilotDetail() {
         </div>
         <div className={PilotDetailStyle}>
           {
-            pilot.shipUpdates.map((update, index) => {
-              return (
-                <div key={index} className={PilotDetailStyle.flex_row}>
-                  <div>
+            pilot.shipUpdates.map((updates, index) => {
+                return (
+                  <div key={index} className={PilotDetailStyle.flex_row}>
                     {
-                      Object.values(update[0]).map((cards,iCard) => {
+                      updates.map((update, iUpdate) => {
                           return (
-                            <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                            <div key={iUpdate}>
                               {
-                                cards.map((card, i) => (
-                                  <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(update[0])[0]} />
-                                ))
+                                Object.values(update).map((cards,iCard) => {
+                                    return (
+                                      <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                                        {
+                                          cards.map((card, i) => (
+                                              <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(updates)[0]} />
+                                            )
+                                          )
+                                        }
+                                      </div>
+                                    )
+                                  }
+                                )
                               }
+                              {Object.keys(update)[0]}: 1/2
                             </div>
                           )
                         }
                       )
                     }
-                    {Object.keys(update[0])[0]}: 1/2
                   </div>
-                  <div>
-                    {
-                      Object.values(update[1]).map((cards,iCard) => {
-                          return (
-                            <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
-                              {
-                                cards.map((card, i) => (
-                                  <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(update[1])[0]} />
-                                ))
-                              }
-                            </div>
-                          )
-                        }
-                      )
-                    }
-                    {Object.keys(update[1])[0]}: 1/2
-                  </div>
-                </div>
-              )
-            }
-          )
+                )
+              }
+            )
           }
         </div>
+
+        {/* SEGUNDA COLUNA DE UPDATE MAIS GABARITO MAIS TARGETS LOCK */}
         <div>
           <div style={{fontSize: 'small'}}>
             <PilotCard image={"sem"} typeCard="gabarito" txtAltImg="gabarito" />
