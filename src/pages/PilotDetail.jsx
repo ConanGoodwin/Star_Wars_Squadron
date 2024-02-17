@@ -20,10 +20,11 @@ function PilotDetail() {
     shipWeaponsExtra: 0,
     shipManeuverExtra: 0,
     shipUpdates: [
-      [{droids: [Droids, Droids] }, {torres: [TorresImg, TorresImg]}], 
-      [{elite: [EliteImg, EliteImg]}, {tripulação: [AtiradorImg, AtiradorImg]}], 
-      [{torpedos: [TorpedosImg, TorpedosImg]}, {misseis: [MisseisImg, MisseisImg]}]
-    ]
+      [{droids: [Droids, Droids], max: 2 }, {torres: [TorresImg, TorresImg], max: 2}], 
+      [{elite: [EliteImg, EliteImg], max: 2 }, {tripulação: [AtiradorImg, AtiradorImg], max: 2 }], 
+      [{torpedos: [TorpedosImg, TorpedosImg], max: 2 }, {misseis: [MisseisImg, MisseisImg], max: 2 }]
+    ],
+    shipBombs: {bombas: [BombasImg, BombasImg, BombasImg, BombasImg, BombasImg], max: 5},
   };
   // const arrayUpdates = [
   //   [[Droids, "droids"], [TorresImg, "torres"]], 
@@ -64,22 +65,31 @@ function PilotDetail() {
           {
             pilot.shipUpdates.map((updates, index) => (
               <div key={index} className={PilotDetailStyle.flex_row}>
+                
                 {
                   updates.map((update, iUpdate) => (
-                    <div key={iUpdate}>
+                    <div key={iUpdate} id="teste">
                       {
-                        Object.values(update).map((cards,iCard) => (
-                          <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
-                            {
-                              cards.map((card, i) => (
-                                  <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(updates)[0]} />
-                                )
-                              )
-                            }
-                          </div>
-                        ))
+                        Object.values(update).map((cards,iCard) => {
+                          return (
+                            (isNaN(cards)) ?
+                            (
+                              <div key={iCard} className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                                {
+                                  cards.map((card, i) => (
+                                      (i < update["max"]) ?
+                                      <PilotCard key={i} image={card} typeCard="update" txtAltImg={Object.keys(update)[0]} /> :
+                                      ""
+                                    )
+                                  )
+                                }
+                              </div>
+                            ) :
+                            ""
+                          )
+                        })
                       }
-                      {Object.keys(update)[0]}: 1/2
+                      {Object.keys(update)[0]}: {update["max"]}
                     </div>
                   ))
                 }
@@ -99,10 +109,15 @@ function PilotDetail() {
           <div className={PilotDetailStyle.flex_row}>
             <div>
               <div className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
-                <PilotCard image={BombasImg} typeCard="update" txtAltImg="bombas" />
-                <PilotCard image={BombasImg} typeCard="update" txtAltImg="bombas" />
+                {
+                  pilot.shipBombs.bombas.map((bomb, i) => (
+                    (i < pilot.shipBombs.max) ?
+                    <PilotCard key={i} image={bomb} typeCard="update" txtAltImg="bombas" /> :
+                    ""
+                  ))
+                }
               </div>
-              bombas: 1/2
+              bombas: {pilot.shipBombs.max}
             </div>
             <div>
               <div>
