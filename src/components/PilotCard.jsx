@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { CardStyle, PilotCardStyle } from './css'
 
 function PilotCard({image, typeCard, txtAltImg}) {
-  console.log(typeCard)
   return (
     <div>
       <img 
