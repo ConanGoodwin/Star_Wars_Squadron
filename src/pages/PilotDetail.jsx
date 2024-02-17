@@ -1,36 +1,12 @@
 // import React from 'react'
 // import PropTypes from 'prop-types'
+import { useState } from 'react';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
-import { AtiradorImg, BombasImg, Droids, EliteImg, LukeSkywalker, MisseisImg, TorpedosImg, TorresImg } from '../assets'
-import { useState } from 'react';
+import pilots from '../data/pilots';
 
 function PilotDetail() {
-  const pilot = {
-    name: "Luke Skywalker",
-    ship: "X-wing",
-    image: LukeSkywalker,
-    shipShield: 2,
-    shipDamage: 0,
-    shipWeapons: 3,
-    shipManeuver: 2,
-    shipHull: 3,
-    shipShieldExtra: 0,
-    shipHullExtra: 0,
-    shipWeaponsExtra: 0,
-    shipManeuverExtra: 0,
-    shipUpdates: [
-      [{droids: [Droids, Droids], max: 2 }, {torres: [TorresImg, TorresImg], max: 2}], 
-      [{elite: [EliteImg, EliteImg], max: 2 }, {tripulação: [AtiradorImg, AtiradorImg], max: 2 }], 
-      [{torpedos: [TorpedosImg, TorpedosImg], max: 2 }, {misseis: [MisseisImg, MisseisImg], max: 2 }]
-    ],
-    shipBombs: {bombas: [BombasImg, BombasImg, BombasImg, BombasImg, BombasImg], max: 5 },
-  };
-  // const arrayUpdates = [
-  //   [[Droids, "droids"], [TorresImg, "torres"]], 
-  //   [[EliteImg, "elite"], [AtiradorImg, "tripulação"]], 
-  //   [[TorpedosImg, "torpedos"], [MisseisImg, "misseis"]]
-  // ];
+  const pilot = pilots[2];
   const [shieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
@@ -56,7 +32,7 @@ function PilotDetail() {
         <div className={PilotDetailStyle.flex_column}>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           Ship Life: {lifeShip}
-          <TxtArea />
+          <TxtArea texto={pilot.shipMod}/>
           <TxtArea />
         </div>
 

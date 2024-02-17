@@ -5,7 +5,7 @@ import {
   PilotHullImg, 
   PilotNoHullImg, 
   PilotNoShieldImg, 
-  PilotShieldImg } from '../assets';
+  PilotShieldImg } from '../assets/status_dameged';
 
 function PilotShield({shieldValue, hullValue, changeLifeChip}) {
   const array = [1, 2, 3, 4, 5, 6];
@@ -13,11 +13,9 @@ function PilotShield({shieldValue, hullValue, changeLifeChip}) {
   const ShildClick = ({target}) => {
     if (target.src === "http://localhost:5173/src/assets/status_dameged/damagedshield.png") {
       target.src = PilotShieldImg;
-      // setLifeShip(lifeShip + 1);
       changeLifeChip(-1);
     } else if (target.src === "http://localhost:5173/src/assets/status_dameged/shield.png") {
       target.src = PilotDamegdShieldImg;
-      // setLifeShip(lifeShip - 1);
       changeLifeChip(1);
     }
   };
