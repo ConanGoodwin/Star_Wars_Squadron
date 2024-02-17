@@ -40,6 +40,36 @@ function PilotDetail() {
           <TxtArea />
           <TxtArea />
         </div>
+        <div className={PilotDetailStyle.main_pilot_stats}>
+          <div className={PilotDetailStyle.cards_update}>
+            <PilotCard image={LukeSkywalker} />
+            <PilotCard image={LukeSkywalker} />
+          </div>
+          <div className={PilotDetailStyle.cards_update}>
+            <PilotCard image={LukeSkywalker} />
+            <PilotCard image={LukeSkywalker} />
+          </div>
+          cartas
+        </div>
+        <div>
+          <div>
+            gabarito
+            <PilotCard image={LukeSkywalker} />
+          </div>
+          <div className={PilotDetailStyle.cards_update}>
+            <div>
+              <PilotCard image={LukeSkywalker} />
+            </div>
+            <div>
+              <div>
+                target lock
+              </div>
+              <div>
+                lockado
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
