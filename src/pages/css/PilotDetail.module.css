@@ -18,7 +18,15 @@
 }
 
 .flex_row {
+  font-size: small;
   text-align: center;
   display: flex;
   flex-direction: row;
+}
+
+.update_cards {
+  overflow: hidden;
+  overflow-x: auto;
+  width: 4.7cm;
+  height: 6.9cm;
 }

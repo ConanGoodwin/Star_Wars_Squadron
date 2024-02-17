@@ -17,6 +17,11 @@ function PilotDetail() {
     shipManeuver: 2,
     shipHull: 3,
   };
+  const arrayUpdates = [
+    [[Droids, "droids"], [TorresImg, "torres"]], 
+    [[EliteImg, "elite"], [AtiradorImg, "tripulação"]], 
+    [[TorpedosImg, "torpedos"], [MisseisImg, "misseis"]]
+  ];
   const [lifeShip, setLifeShip] = useState(
     pilot.shipShield + shieldExtra + pilot.shipHull + hullExtra);
 
@@ -41,18 +46,29 @@ function PilotDetail() {
           <TxtArea />
         </div>
         <div className={PilotDetailStyle}>
-          <div className={PilotDetailStyle.flex_row}>
-            <PilotCard image={Droids} typeCard="update" txtAltImg="droid" />
-            <PilotCard image={TorresImg} />
-          </div>
-          <div className={PilotDetailStyle.flex_row}>
-            <PilotCard image={EliteImg} />
-            <PilotCard image={AtiradorImg} />
-          </div>
-          <div className={PilotDetailStyle.flex_row}>
-            <PilotCard image={TorpedosImg} />
-            <PilotCard image={MisseisImg} />
-          </div>
+          {
+            arrayUpdates.map((update, index) => {
+                return (
+                  <div className={PilotDetailStyle.flex_row} key={index}>
+                    <div>
+                      <div className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                        <PilotCard image={update[0][0]} typeCard="update" txtAltImg={update[0][1]} />
+                        <PilotCard image={update[0][0]} typeCard="update" txtAltImg={update[0][1]} />
+                      </div>
+                      {update[0][1]}: 1/2
+                    </div>
+                    <div>
+                      <div className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                        <PilotCard image={update[1][0]} typeCard="update" txtAltImg={update[1][1]} />
+                        <PilotCard image={update[1][0]} typeCard="update" txtAltImg={update[1][1]} />
+                      </div>
+                      {update[1][1]}: 1/2
+                    </div>
+                  </div>
+                )
+              }
+            )
+          }
         </div>
         <div>
           <div>
@@ -61,7 +77,11 @@ function PilotDetail() {
           </div>
           <div className={PilotDetailStyle.flex_row}>
             <div>
-              <PilotCard image={BombasImg} />
+              <div className={PilotDetailStyle.flex_row + ' ' + PilotDetailStyle.update_cards}>
+                <PilotCard image={BombasImg} typeCard="update" txtAltImg="bombas" />
+                <PilotCard image={BombasImg} typeCard="update" txtAltImg="bombas" />
+              </div>
+              1/2
             </div>
             <div>
               <div>
