@@ -7,7 +7,8 @@ import pilots from '../data/pilots';
 import Gabarito from '../components/Gabarito';
 
 function PilotDetail() {
-  const pilot = pilots[0];
+  const [index, setIndex] = useState(0);
+  const [pilot, setPilot] = useState(pilots[0]);
   const [shieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
@@ -15,6 +16,16 @@ function PilotDetail() {
 
   const changeLifeChip = (value) => {
     setLifeShip(lifeShip - value);
+  };
+
+  const navClickButton = ({target: { id }}) => {
+    if (id === 'prev' && index > 0) {
+      setPilot(pilots[index - 1]);
+      setIndex(index - 1);
+    } else if (id === 'next' && index < pilots.length - 1) {
+      setPilot(pilots[index + 1]);
+      setIndex(index + 1);
+    }
   };
 
   return (
@@ -35,6 +46,11 @@ function PilotDetail() {
           Ship Life: {lifeShip}
           <TxtArea texto={pilot.shipMod}/>
           <TxtArea />
+          <div style={{margin: '10px'}}>
+            <button id='prev' onClick={navClickButton}>{"<"}</button>
+            {"<...[" + index + "]...>"}
+            <button id='next' onClick={navClickButton}>{">"}</button>
+          </div>
         </div>
 
          {/* PRIMEIRA COLUNA DE UPDATE */}
