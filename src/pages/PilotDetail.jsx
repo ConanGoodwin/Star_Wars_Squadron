@@ -1,6 +1,8 @@
 // import React from 'react'
 // import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
+import TargetAtack from '../assets/target_atack.png';
+import TargetDefense from '../assets/target_defense.png';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
@@ -52,6 +54,15 @@ function PilotDetail() {
       setIndex(index + 1);
     }
   };
+
+  const buildTragetDefense = () => {
+    const rows = [];
+    for (let i = 0; i < 10; i++) {
+        rows.push(<img src={TargetDefense} alt="" className={PilotDetailStyle.targetImg} />);
+    }
+
+    return rows;
+  }
 
   return (
     <main className={PilotDetailStyle.main} onKeyDown={navClickButton}>
@@ -111,11 +122,18 @@ function PilotDetail() {
               update={pilot.shipBombs}
             />
             <div>
-              <div>
-                target lock
+              <div className={PilotDetailStyle.target} >
+                <img src={TargetAtack} alt="" className={PilotDetailStyle.targetImg} />
+                <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
+                {"<>"}
+                <input type="text" name="" id="" className={PilotDetailStyle.txtLevelTarget} />
+                {"<>"}
+                <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
               </div>
               <div>
-                lockado
+                {
+                  buildTragetDefense()
+                }
               </div>
             </div>
           </div>
