@@ -12,15 +12,28 @@ function PilotDetail() {
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
+  const [totalCost, setTotalCosy] = useState(
+    pilot.pilotCost + 
+    pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
+    pilot.shipUpdates[1][0].cost + pilot.shipUpdates[1][1].cost +
+    pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
+    pilot.shipBombs.cost + pilot.shipModCost
+  );
 
   const attPilotStats = useEffect(
     () => {
       setShieldShip(pilot.shipShield + pilot.shipShieldExtra);
       setHullShip(pilot.shipHull + pilot.shipHullExtra);
       setLifeShip(shieldShip + hullShip);
-    },[hullShip, pilot.shipHull, pilot.shipHullExtra, pilot.shipShield, pilot.shipShieldExtra, shieldShip]
+      setTotalCosy(
+        pilot.pilotCost + 
+        pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
+        pilot.shipUpdates[1][0].cost + pilot.shipUpdates[1][1].cost +
+        pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
+        pilot.shipBombs.cost + pilot.shipModCost
+      );
+    },[hullShip, pilot.pilotCost, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip]
   )
-
 
   const changeLifeChip = (value) => {
     setLifeShip(lifeShip - value);
@@ -58,13 +71,14 @@ function PilotDetail() {
             {pilot.pilotAbility + pilot.pilotExtraAbility}
           </div>
           Ship Life: {lifeShip}
-          <TxtArea texto={pilot.shipMod}/>
+          <TxtArea texto={pilot.shipMod + '\n' + '\n' + 'custo do mod: ' + pilot.shipModCost}/>
           <TxtArea />
           <div style={{margin: '10px'}}>
             <button id='prev' onClick={navClickButton}>{"<"}</button>
             {"<...[" + index + "]...>"}
             <button id='next' onClick={navClickButton}>{">"}</button>
           </div>
+          Total Points Used: {totalCost}
         </div>
 
          {/* PRIMEIRA COLUNA DE UPDATE */}
