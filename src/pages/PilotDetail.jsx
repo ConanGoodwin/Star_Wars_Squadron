@@ -1,6 +1,6 @@
 // import React from 'react'
 // import PropTypes from 'prop-types'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
@@ -9,9 +9,17 @@ import Gabarito from '../components/Gabarito';
 function PilotDetail() {
   const [index, setIndex] = useState(0);
   const [pilot, setPilot] = useState(pilots[0]);
-  const [shieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
-  const [hullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
+  const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
+  const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
+
+  const attPilotStats = useEffect(
+    () => {
+      setShieldShip(pilot.shipShield + pilot.shipShieldExtra);
+      setHullShip(pilot.shipHull + pilot.shipHullExtra);
+      setLifeShip(shieldShip + hullShip);
+    },[hullShip, pilot.shipHull, pilot.shipHullExtra, pilot.shipShield, pilot.shipShieldExtra, shieldShip]
+  )
 
 
   const changeLifeChip = (value) => {
@@ -22,8 +30,11 @@ function PilotDetail() {
     if (id === 'prev' && index > 0) {
       setPilot(pilots[index - 1]);
       setIndex(index - 1);
+      attPilotStats();
     } else if (id === 'next' && index < pilots.length - 1) {
       setPilot(pilots[index + 1]);
+      setIndex(index + 1);
+      attPilotStats();
       setIndex(index + 1);
     }
   };
@@ -43,6 +54,9 @@ function PilotDetail() {
          {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
+          <div className={PilotDetailStyle.float_div}>
+            {pilot.pilotAbility + pilot.pilotExtraAbility}
+          </div>
           Ship Life: {lifeShip}
           <TxtArea texto={pilot.shipMod}/>
           <TxtArea />

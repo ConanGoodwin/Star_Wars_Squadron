@@ -12,6 +12,7 @@ const pilots = [
   {
     name: "Luke Skywalker",
     pilotAbility: 8,
+    pilotExtraAbility: 0,
     pilotFaction: "Rebel",
     ship: "X-wing",
     shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
@@ -39,6 +40,7 @@ const pilots = [
   {
     name: "Darth Vader",
     pilotAbility: 9,
+    pilotExtraAbility: 0,
     pilotFaction: "Empire",
     ship: "TIE Fighter",
     shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
@@ -66,6 +68,7 @@ const pilots = [
   {
     name: "Miranda Doni",
     pilotAbility: 8,
+    pilotExtraAbility: 0,
     pilotFaction: "Rebel",
     ship: "K-Wing",
     shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
