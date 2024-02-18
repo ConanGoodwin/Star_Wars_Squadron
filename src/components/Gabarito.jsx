@@ -37,7 +37,6 @@ function Gabarito({moveShip}) {
     <div className={GabaritoStyle.gabarito_border}>
       <table className={GabaritoStyle.gabarito_border}>
         <tbody>
-          {console.log(moveShip)}
           {
             moveShip.map((row, index) => (
               <tr key={index}>

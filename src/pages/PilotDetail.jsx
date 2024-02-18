@@ -39,12 +39,13 @@ function PilotDetail() {
     setLifeShip(lifeShip - value);
   };
 
-  const navClickButton = ({target: { id }}) => {
-    if (id === 'prev' && index > 0) {
+  const navClickButton = ({target: { id }, keyCode}) => {
+    console.log(keyCode);
+    if ((id === 'prev' || keyCode === 37) && index > 0) {
       setPilot(pilots[index - 1]);
       setIndex(index - 1);
       attPilotStats();
-    } else if (id === 'next' && index < pilots.length - 1) {
+    } else if ((id === 'next' || keyCode === 39) && index < pilots.length - 1) {
       setPilot(pilots[index + 1]);
       setIndex(index + 1);
       attPilotStats();
@@ -53,7 +54,7 @@ function PilotDetail() {
   };
 
   return (
-    <main className={PilotDetailStyle.main}>
+    <main className={PilotDetailStyle.main} onKeyDown={navClickButton}>
       {/* COLUNA DE ESCUDOS */}
       <section>
         <PilotShield 
@@ -74,9 +75,9 @@ function PilotDetail() {
           <TxtArea texto={pilot.shipMod + '\n' + '\n' + 'custo do mod: ' + pilot.shipModCost}/>
           <TxtArea />
           <div style={{margin: '10px'}}>
-            <button id='prev' onClick={navClickButton}>{"<"}</button>
+            <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
             {"<...[" + index + "]...>"}
-            <button id='next' onClick={navClickButton}>{">"}</button>
+            <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
           </div>
           Total Points Used: {totalCost}
         </div>
@@ -102,7 +103,6 @@ function PilotDetail() {
         {/* SEGUNDA COLUNA DE UPDATE MAIS GABARITO MAIS TARGETS LOCK */}
         <div>
           <div style={{fontSize: 'small'}}>
-            {console.log(pilot.shipMove)}
             <Gabarito moveShip={pilot.shipMove} />
           </div>
           <div className={PilotDetailStyle.flex_row}>
