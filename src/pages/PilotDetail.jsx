@@ -4,9 +4,10 @@ import { useState } from 'react';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
+import Gabarito from '../components/Gabarito';
 
 function PilotDetail() {
-  const pilot = pilots[2];
+  const pilot = pilots[0];
   const [shieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
@@ -57,16 +58,13 @@ function PilotDetail() {
         {/* SEGUNDA COLUNA DE UPDATE MAIS GABARITO MAIS TARGETS LOCK */}
         <div>
           <div style={{fontSize: 'small'}}>
-            <PilotCard image={"sem"} typeCard="gabarito" txtAltImg="gabarito" />
-            tt
-            <PilotCard image={"sem"} typeCard="gabarito" txtAltImg="gabarito" />
-            tt
+            <Gabarito />
           </div>
           <div className={PilotDetailStyle.flex_row}>
-              <CarrouselCard
-                key={1}
-                update={pilot.shipBombs}
-              />
+            <CarrouselCard
+              key={1}
+              update={pilot.shipBombs}
+            />
             <div>
               <div>
                 target lock
