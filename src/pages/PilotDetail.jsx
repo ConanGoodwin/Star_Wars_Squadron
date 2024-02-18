@@ -58,7 +58,8 @@ function PilotDetail() {
         {/* SEGUNDA COLUNA DE UPDATE MAIS GABARITO MAIS TARGETS LOCK */}
         <div>
           <div style={{fontSize: 'small'}}>
-            <Gabarito />
+            {console.log(pilot.shipMove)}
+            <Gabarito moveShip={pilot.shipMove} />
           </div>
           <div className={PilotDetailStyle.flex_row}>
             <CarrouselCard
