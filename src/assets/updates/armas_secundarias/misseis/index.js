@@ -1,6 +1,6 @@
 import FoguetesProton from './Foguetes-proton.png';
-import MisselAssalto from './Missel-assalto.png';
-import MisselPulsoIon from './Missel-pulso-ion.png';
+import MisselAssalto from './Misseis-assalto.png';
+import MisselPulsoIon from './Misseis-pulso-ion.png';
 import MisseisTeleguiados from './Misseis-teleguiados.png';
 
 export {

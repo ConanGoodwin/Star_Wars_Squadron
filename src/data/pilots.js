@@ -16,6 +16,8 @@ const pilots = [
     pilotFaction: "Rebel",
     pilotCost: 28,
     ship: "X-wing",
+    shipTitle: "",
+    shipCostTitle: 0,
     shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
     image: LukeSkywalker,
     shipShield: 2,
@@ -38,6 +40,9 @@ const pilots = [
       [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
     ],
     shipBombs: {bombas: [RedeConner, RedeConner, RedeConner, RedeConner, RedeConner], max: 5, cost: 4 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
   },
@@ -47,7 +52,9 @@ const pilots = [
     pilotExtraAbility: 0,
     pilotFaction: "Empire",
     pilotCost: 29,
-    ship: "TIE Advanced X1",
+    ship: "TIE Advanced",
+    shipTitle: "Titulo TIE Advanced X1: Sua barra de melhorias ganha icone de melhoria sistemas. Se equipar sistemas o custo desta melhoria é reduzido em 4.",
+    shipCostTitle: 0,
     shipMove: [[0,0,1,0,0,0],[0,0,1,0,0,4],[5,8,2,11,14,0],[5,8,2,11,14,0],[0,9,0,12,0,0],[0,0,0,0,0,0]],
     image: DarthVader,
     shipShield: 2,
@@ -70,6 +77,9 @@ const pilots = [
       [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
   },
@@ -80,6 +90,8 @@ const pilots = [
     pilotFaction: "Empire",
     pilotCost: 27,
     ship: "TIE Interceptor",
+    shipTitle: "",
+    shipCostTitle: 0,
     shipMove: [[0,0,1,0,0,4],[0,0,2,0,0,0],[5,8,2,11,14,4],[6,9,2,12,15,0],[5,0,0,0,14,0],[0,0,0,0,0,0]],
     image: SoontirFel,
     shipShield: 0,
@@ -102,6 +114,9 @@ const pilots = [
       [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
   },
@@ -112,6 +127,8 @@ const pilots = [
     pilotFaction: "Empire",
     pilotCost: 25,
     ship: "TIE Interceptor",
+    shipTitle: "",
+    shipCostTitle: 0,
     shipMove: [[0,0,1,0,0,4],[0,0,2,0,0,0],[5,8,2,11,14,4],[6,9,2,12,15,0],[5,0,0,0,14,0],[0,0,0,0,0,0]],
     image: TurrPhennir,
     shipShield: 0,
@@ -134,6 +151,9 @@ const pilots = [
       [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
   },
@@ -144,6 +164,8 @@ const pilots = [
     pilotFaction: "Rebel",
     pilotCost: 25,
     ship: "Y-Wing",
+    shipTitle: "",
+    shipCostTitle: 0,
     shipMove: [[0,0,0,0,0,0],[0,0,3,0,0,4],[7,8,1,11,16,0],[5,8,2,11,14,0],[0,8,2,11,0,0],[0,0,0,0,0,0]],
     image: HortonSalm,
     shipShield: 3,
@@ -166,6 +188,9 @@ const pilots = [
       [{torpedos: [TorpedosDardos, TorpedoProton], max: 2, cost: 6 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
   },
@@ -176,6 +201,8 @@ const pilots = [
     pilotFaction: "Rebel",
     pilotCost: 29,
     ship: "K-Wing",
+    shipTitle: "",
+    shipCostTitle: 0,
     shipMove: [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,8,1,11,0,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
     image: MirandaDoni,
     shipShield: 4,
@@ -198,6 +225,9 @@ const pilots = [
       [{torpedos: [MunicaoExtra, TorpedoProton, TorpedoProton], max: 3, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 4 }]
     ],
     shipBombs: {bombas: [RedeConner, RedeConner, BombasIon, BombasIon], max: 4, cost: 4 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
   },

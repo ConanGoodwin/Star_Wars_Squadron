@@ -18,7 +18,8 @@ function PilotDetail() {
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
     pilot.shipUpdates[1][0].cost + pilot.shipUpdates[1][1].cost +
     pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
-    pilot.shipBombs.cost + pilot.shipModCost
+    pilot.shipBombs.cost + pilot.shipModCost + pilot.shipCostTitle +
+    pilot.shipAdvancedUpdates[0][0].cost + pilot.shipAdvancedUpdates[0][1].cost
   );
 
   useEffect(
@@ -106,11 +107,17 @@ function PilotDetail() {
           </div>
           <span>Ship Life: {lifeShip}</span>
           <TxtArea texto={pilot.shipMod + '\n' + '\n' + 'custo do mod: ' + pilot.shipModCost}/>
-          <TxtArea />
-          <div style={{margin: '10px'}}>
-            <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
-            {"<...[" + index + "]...>"}
-            <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
+          <TxtArea texto={pilot.shipTitle + '\n' + '\n' + 'custo do titulo: ' + pilot.shipCostTitle}/>
+          <div className={PilotDetailStyle.div_functions}>
+            <div>
+              <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
+              {"<...[" + index + "]...>"}
+              <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
+            </div>
+            <div className={PilotDetailStyle.div_more_upgrade}>
+              <button id='moreUpdtae' onClick={""} tabIndex="0" className={PilotDetailStyle.button_more_upgrade}>+</button>
+              more upgrades
+            </div>
           </div>
           Total Points Used: {totalCost}
         </div>

@@ -38,6 +38,26 @@ span {
   left: 103px;
 }
 
+.div_functions {
+  justify-content: center;
+  display: flex;
+  margin: 10px;
+}
+
+.div_more_upgrade {
+  /* border: 1px solid black; */
+  font-size: xx-small;
+  width: 20px;
+  height: 20px;
+  margin-left: 60px;
+}
+
+.button_more_upgrade {
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+}
+
 .flex_row {
   font-size: small;
   text-align: center;
