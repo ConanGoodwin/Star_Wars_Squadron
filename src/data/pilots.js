@@ -1,10 +1,10 @@
-import { LukeSkywalker, DarthVader, MirandaDoni } from '../assets/pilots';
+import { LukeSkywalker, DarthVader, MirandaDoni, SoontirFel, TurrPhennir, HortonSalm } from '../assets/pilots';
 import { BombasIon, RedeConner } from '../assets/updates/armas_secundarias/bombas';
 import { MisseisTeleguiados } from '../assets/updates/armas_secundarias/misseis';
-import { MunicaoExtra, TorpedoProton } from '../assets/updates/armas_secundarias/torpedos';
-import { R2d2 } from '../assets/updates/droids'
-import { AbrirGuarda, PeritoPilotagem } from '../assets/updates/elite';
-import { TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
+import { MunicaoExtra, TorpedoProton, TorpedosDardos } from '../assets/updates/armas_secundarias/torpedos';
+import { R2d2, R5d8 } from '../assets/updates/droids'
+import { AbrirGuarda, Evasivo, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
+import { TorreCanhaoIonico, TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
 import { Atirador } from '../assets/updates/tripulacao';
 
 
@@ -74,6 +74,102 @@ const pilots = [
     targetDefense: [],
   },
   {
+    name: "Soontir Fel",
+    pilotAbility: 9,
+    pilotExtraAbility: 0,
+    pilotFaction: "Empire",
+    pilotCost: 27,
+    ship: "TIE Interceptor",
+    shipMove: [[0,0,1,0,0,4],[0,0,2,0,0,0],[5,8,2,11,14,4],[6,9,2,12,15,0],[5,0,0,0,14,0],[0,0,0,0,0,0]],
+    image: SoontirFel,
+    shipShield: 0,
+    shipDamage: 0,
+    shipWeapons: 3,
+    shipManeuver: 3,
+    shipHull: 3,
+    shipActions: ["foco", "pirueta", "impulso", "esquiva"],
+    shipAbility: "Quando receber uma ficha de extresse, você pode colocar imediatamente uma ficha de foco em sua nave.",
+    shipMod: "",
+    shipModCost: 0,
+    shipShieldExtra: 0,
+    shipHullExtra: 0,
+    shipWeaponsExtra: 0,
+    shipManeuverExtra: 0,
+    shipExpansions: ["elite"],
+    shipUpdates: [
+      [{droids: ["sem"], max: 1, cost: 0 }, {torres: ["sem"], max: 1, cost: 0 }], 
+      [{elite: [Evasivo], max: 1, cost: 2 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
+    ],
+    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
+  },
+  {
+    name: "Turr Phennir",
+    pilotAbility: 7,
+    pilotExtraAbility: 2,
+    pilotFaction: "Empire",
+    pilotCost: 25,
+    ship: "TIE Interceptor",
+    shipMove: [[0,0,1,0,0,4],[0,0,2,0,0,0],[5,8,2,11,14,4],[6,9,2,12,15,0],[5,0,0,0,14,0],[0,0,0,0,0,0]],
+    image: TurrPhennir,
+    shipShield: 0,
+    shipDamage: 0,
+    shipWeapons: 3,
+    shipManeuver: 3,
+    shipHull: 3,
+    shipActions: ["foco", "pirueta", "impulso", "esquiva"],
+    shipAbility: "Após realizar um ataque, você pode realizar uma ação de impulso ou pirueta gratuito.",
+    shipMod: "",
+    shipModCost: 0,
+    shipShieldExtra: 0,
+    shipHullExtra: 0,
+    shipWeaponsExtra: 0,
+    shipManeuverExtra: 0,
+    shipExpansions: ["elite"],
+    shipUpdates: [
+      [{droids: ["sem"], max: 1, cost: 0 }, {torres: ["sem"], max: 1, cost: 0 }], 
+      [{elite: [InstintosVeterano], max: 1, cost: 1 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
+    ],
+    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
+  },
+  {
+    name: "Horton Salm",
+    pilotAbility: 8,
+    pilotExtraAbility: 0,
+    pilotFaction: "Rebel",
+    pilotCost: 25,
+    ship: "Y-Wing",
+    shipMove: [[0,0,0,0,0,0],[0,0,3,0,0,4],[7,8,1,11,15,0],[5,8,2,11,14,0],[0,8,2,11,0,0],[0,0,0,0,0,0]],
+    image: HortonSalm,
+    shipShield: 3,
+    shipDamage: 0,
+    shipWeapons: 2,
+    shipManeuver: 1,
+    shipHull: 5,
+    shipActions: ["foco", "target"],
+    shipAbility: "Ao atacar em alcance 2-3, você pode rerolar qualquer de seus resultados em branco.",
+    shipMod: "",
+    shipModCost: 0,
+    shipShieldExtra: 0,
+    shipHullExtra: 0,
+    shipWeaponsExtra: 0,
+    shipManeuverExtra: 0,
+    shipExpansions: ["torre", "torpedo", "torpedo", "droid"],
+    shipUpdates: [
+      [{droids: [R5d8], max: 1, cost: 3 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
+      [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{torpedos: [TorpedosDardos, TorpedoProton], max: 2, cost: 6 }, {misseis: ["sem"], max: 1, cost: 0 }]
+    ],
+    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
+  },
+  {
     name: "Miranda Doni",
     pilotAbility: 8,
     pilotExtraAbility: 0,
@@ -95,7 +191,7 @@ const pilots = [
     shipHullExtra: 0,
     shipWeaponsExtra: 0,
     shipManeuverExtra: 0,
-    shipExpansions: ["canhão", "torpedo", "torpedo", "missel", "tripulante", "bomba"],
+    shipExpansions: ["torre", "torpedo", "torpedo", "missel", "tripulante", "bomba"],
     shipUpdates: [
       [{droids: ["sem"], max: 1, cost: 4 }, {torres: [TorreLaserDupla], max: 1, cost: 4 }], 
       [{elite: ["sem"], max: 1, cost: 4 }, {tripulação: [Atirador], max: 1, cost: 4 }], 
