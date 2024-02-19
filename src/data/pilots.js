@@ -38,6 +38,8 @@ const pilots = [
       [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
     ],
     shipBombs: {bombas: [RedeConner, RedeConner, RedeConner, RedeConner, RedeConner], max: 5, cost: 4 },
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
   },
   {
     name: "Darth Vader",
@@ -68,6 +70,8 @@ const pilots = [
       [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
   },
   {
     name: "Miranda Doni",
@@ -98,6 +102,8 @@ const pilots = [
       [{torpedos: [MunicaoExtra, TorpedoProton, TorpedoProton], max: 3, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 4 }]
     ],
     shipBombs: {bombas: [RedeConner, RedeConner, BombasIon, BombasIon], max: 4, cost: 4 },
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
   },
 ];
 
