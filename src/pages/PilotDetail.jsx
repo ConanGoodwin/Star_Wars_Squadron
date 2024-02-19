@@ -1,5 +1,3 @@
-// import React from 'react'
-// import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
 import TargetAtack from '../assets/target_atack.png';
 import TargetDefense from '../assets/target_defense.png';
@@ -14,8 +12,7 @@ function PilotDetail() {
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
-  const [damageAllShieldShips] = useState([0]);
-  const [damageAllHullShips] = useState([0]);
+  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -28,18 +25,20 @@ function PilotDetail() {
     () => {
       const att = () => {
         for (let i = 0; i < pilots.length; i++) {
-          damageAllShieldShips.push(0);
-          damageAllHullShips.push(0);
+          ships.push({damageShieldShip: 0, damageHullShips: 0});
         }
       }
       att();
-    },[damageAllHullShips, damageAllShieldShips])
+    },[ships])
 
   const attPilotStats = useEffect(
     () => {
       setShieldShip(pilot.shipShield + pilot.shipShieldExtra);
       setHullShip(pilot.shipHull + pilot.shipHullExtra);
-      setLifeShip(shieldShip + hullShip - (damageAllShieldShips[index] + damageAllHullShips[index]));
+      setLifeShip(
+        shieldShip + hullShip - 
+        (ships[index].damageShieldShip + ships[index].damageHullShips)
+      );
       setTotalCosy(
         pilot.pilotCost + 
         pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -47,17 +46,17 @@ function PilotDetail() {
         pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
         pilot.shipBombs.cost + pilot.shipModCost
       );
-    },[damageAllHullShips, damageAllShieldShips, hullShip, index, pilot.pilotCost, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip]
+    },[hullShip, index, pilot.pilotCost, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
 
   const changeLifeChip = (value, type) => {
     setLifeShip(lifeShip - value);
     if (type === 'shield') {
-      damageAllShieldShips[index] = damageAllShieldShips[index] + value;
+      ships[index].damageShieldShip = ships[index].damageShieldShip + value;
     }
     
     if (type === 'hull') {
-      damageAllHullShips[index] = damageAllHullShips[index] + value;
+      ships[index].damageHullShips = ships[index].damageHullShips + value;
     }
   };
 
@@ -91,8 +90,8 @@ function PilotDetail() {
           shieldValue={ shieldShip } 
           hullValue={ hullShip } 
           changeLifeChip={changeLifeChip}
-          damageShieldShip={damageAllShieldShips[index]}
-          damageHullShip={damageAllHullShips[index]}
+          damageShieldShip={ships[index].damageShieldShip}
+          damageHullShip={ships[index].damageHullShips}
           indexPilot={index}
           qtPilot={pilots.length}
         />
@@ -174,7 +173,5 @@ function PilotDetail() {
     </main>
   )
 }
-
-// PilotDetail.propTypes = {}
 
 export default PilotDetail

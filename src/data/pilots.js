@@ -47,7 +47,7 @@ const pilots = [
     pilotExtraAbility: 0,
     pilotFaction: "Empire",
     pilotCost: 29,
-    ship: "TIE Fighter",
+    ship: "TIE Advanced X1",
     shipMove: [[0,0,1,0,0,0],[0,0,1,0,0,4],[5,8,2,11,14,0],[5,8,2,11,14,0],[0,9,0,12,0,0],[0,0,0,0,0,0]],
     image: DarthVader,
     shipShield: 2,
