@@ -104,7 +104,7 @@ function PilotDetail() {
           <div className={PilotDetailStyle.float_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
           </div>
-          Ship Life: {lifeShip}
+          <span>Ship Life: {lifeShip}</span>
           <TxtArea texto={pilot.shipMod + '\n' + '\n' + 'custo do mod: ' + pilot.shipModCost}/>
           <TxtArea />
           <div style={{margin: '10px'}}>

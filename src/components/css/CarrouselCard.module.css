@@ -11,3 +11,10 @@
   width: 4.7cm;
   height: 6.9cm;
 }
+
+.font {
+  color: white;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
+}

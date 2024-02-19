@@ -5,7 +5,7 @@ import { CarrouselCardStyle } from './css'
 
 function CorrouselCards({update}) {
   return (
-    <div id="teste">
+    <div className={CarrouselCardStyle.font}>
       {
         Object.values(update).map((cards, iCard) => (
           (isNaN(cards)) ?
