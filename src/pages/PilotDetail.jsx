@@ -14,6 +14,8 @@ function PilotDetail() {
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
+  const [damageAllShieldShips] = useState([0]);
+  const [damageAllHullShips] = useState([0]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -22,11 +24,22 @@ function PilotDetail() {
     pilot.shipBombs.cost + pilot.shipModCost
   );
 
+  useEffect(
+    () => {
+      const att = () => {
+        for (let i = 0; i < pilots.length; i++) {
+          damageAllShieldShips.push(0);
+          damageAllHullShips.push(0);
+        }
+      }
+      att();
+    },[damageAllHullShips, damageAllShieldShips])
+
   const attPilotStats = useEffect(
     () => {
       setShieldShip(pilot.shipShield + pilot.shipShieldExtra);
       setHullShip(pilot.shipHull + pilot.shipHullExtra);
-      setLifeShip(shieldShip + hullShip);
+      setLifeShip(shieldShip + hullShip - (damageAllShieldShips[index] + damageAllHullShips[index]));
       setTotalCosy(
         pilot.pilotCost + 
         pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -34,15 +47,21 @@ function PilotDetail() {
         pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
         pilot.shipBombs.cost + pilot.shipModCost
       );
-    },[hullShip, pilot.pilotCost, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip]
+    },[damageAllHullShips, damageAllShieldShips, hullShip, index, pilot.pilotCost, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip]
   )
 
-  const changeLifeChip = (value) => {
+  const changeLifeChip = (value, type) => {
     setLifeShip(lifeShip - value);
+    if (type === 'shield') {
+      damageAllShieldShips[index] = damageAllShieldShips[index] + value;
+    }
+    
+    if (type === 'hull') {
+      damageAllHullShips[index] = damageAllHullShips[index] + value;
+    }
   };
 
   const navClickButton = ({target: { id }, keyCode}) => {
-    console.log(keyCode);
     if ((id === 'prev' || keyCode === 37) && index > 0) {
       setPilot(pilots[index - 1]);
       setIndex(index - 1);
@@ -55,7 +74,7 @@ function PilotDetail() {
     }
   };
 
-  const buildTragetDefense = () => {
+  const buildTargetDefense = () => {
     const rows = [];
     for (let i = 0; i < 10; i++) {
         rows.push(<img src={TargetDefense} alt="" className={PilotDetailStyle.targetImg} />);
@@ -72,6 +91,10 @@ function PilotDetail() {
           shieldValue={ shieldShip } 
           hullValue={ hullShip } 
           changeLifeChip={changeLifeChip}
+          damageShieldShip={damageAllShieldShips[index]}
+          damageHullShip={damageAllHullShips[index]}
+          indexPilot={index}
+          qtPilot={pilots.length}
         />
       </section>
 
@@ -93,7 +116,7 @@ function PilotDetail() {
           Total Points Used: {totalCost}
         </div>
 
-         {/* PRIMEIRA COLUNA DE UPDATE */}
+        {/* PRIMEIRA COLUNA DE UPDATE */}
         <div className={PilotDetailStyle}>
           {
             pilot.shipUpdates.map((updates, index) => (
@@ -124,15 +147,24 @@ function PilotDetail() {
             <div>
               <div className={PilotDetailStyle.target} >
                 <img src={TargetAtack} alt="" className={PilotDetailStyle.targetImg} />
-                <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
+                <div>
+                  Tipo de nave:
+                  <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
+                </div>
                 {"<>"}
-                <input type="text" name="" id="" className={PilotDetailStyle.txtLevelTarget} />
+                <div>
+                  Level:
+                  <input type="text" name="" id="" className={PilotDetailStyle.txtLevelTarget} />
+                </div>
                 {"<>"}
-                <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
+                <div>
+                  Nome do Piloto:
+                  <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
+                </div>
               </div>
               <div>
                 {
-                  buildTragetDefense()
+                  buildTargetDefense()
                 }
               </div>
             </div>

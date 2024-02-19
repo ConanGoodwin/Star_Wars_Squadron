@@ -1,23 +1,96 @@
 // import React from 'react'
 import PropTypes from 'prop-types';
 import { 
+  PilotCriticalDamagedHull,
   PilotDamegdShieldImg,
   PilotHullImg, 
   PilotNoHullImg, 
   PilotNoShieldImg, 
-  PilotShieldImg } from '../assets/status_dameged';
+  PilotShieldImg, 
+  PilotSimpleDamagedHull,
+} from '../assets/status_dameged';
+import { useEffect, useState } from 'react';
 
-function PilotShield({shieldValue, hullValue, changeLifeChip}) {
+function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, damageHullShip, indexPilot, qtPilot}) {
   const array = [1, 2, 3, 4, 5, 6];
+  const [typeDamageHull,setTypeDamageHull] = useState([[0,0,0,0,0,0]]);
 
-  const ShildClick = ({target}) => {
-    if (target.src === "http://localhost:5173/src/assets/status_dameged/damagedshield.png") {
-      target.src = PilotShieldImg;
-      changeLifeChip(-1);
-    } else if (target.src === "http://localhost:5173/src/assets/status_dameged/shield.png") {
-      target.src = PilotDamegdShieldImg;
-      changeLifeChip(1);
+  useEffect(() => {
+    for (let i = 0; i < qtPilot; i++) {
+      typeDamageHull.push([0, 0, 0, 0, 0, 0]);
     }
+  },[qtPilot, typeDamageHull]);
+
+
+  const ShildClick = ({target: { name, id, src}}) => {
+    if (!src.includes('noshield.png') && !src.includes('nohull.png')) {
+      // console.log(src);
+      if (src.includes("damagedshield.png")) {
+        src = PilotShieldImg;
+        changeLifeChip(-1, name);
+
+        return true;
+      }
+
+      if (parseInt(id) === damageShieldShip) {
+        if (src.includes("tshield.png")) {
+          src = PilotDamegdShieldImg;
+          changeLifeChip(1, name);
+  
+          return true;
+        }
+      }
+      
+      if (damageShieldShip === shieldValue) {
+        if (src.includes("simpledamagehull.png")) {
+          src = PilotCriticalDamagedHull;
+          setTypeDamageHull(typeDamageHull.map(
+            (pilot, iPilot) => (
+              (iPilot === indexPilot) ? 
+              (pilot.map((item, index) => (index === parseInt(id)) ? 2 : item)) : 
+              pilot
+            )
+          ));
+
+          return true;
+        }
+        
+        if (src.includes("criticaldamagehull.png")) {
+          src = PilotHullImg;
+          changeLifeChip(-1, name);
+          setTypeDamageHull(typeDamageHull.map(
+            (pilot, iPilot) => (
+              (iPilot === indexPilot) ? 
+              (pilot.map((item, index) => (index === parseInt(id)) ? 0 : item)) : 
+              pilot
+            )
+          ));
+
+          return true;
+        }
+        
+        if (parseInt(id) === damageHullShip) {
+          if (src.includes("hull.png")) {
+            src = PilotSimpleDamagedHull;
+            changeLifeChip(1, name);
+            setTypeDamageHull(typeDamageHull.map(
+              (pilot, iPilot) => (
+                (iPilot === indexPilot) ? 
+                (pilot.map((item, index) => (index === parseInt(id)) ? 1 : item)) : 
+                pilot
+              )
+            ));
+            // console.log(typeDamageHull);
+  
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    return false;
   };
 
   return (
@@ -27,7 +100,13 @@ function PilotShield({shieldValue, hullValue, changeLifeChip}) {
           <section key={index}>
             <img 
               id={index}
-              src={(index < shieldValue) ? PilotShieldImg : PilotNoShieldImg} 
+              name="shield"
+              src={
+                (index < shieldValue) ? 
+                (
+                  (index < damageShieldShip) ? PilotDamegdShieldImg : PilotShieldImg
+                ) : PilotNoShieldImg
+              } 
               alt=""
               onClick={ShildClick}
             />
@@ -39,8 +118,18 @@ function PilotShield({shieldValue, hullValue, changeLifeChip}) {
           <section key={index} id={index}>
             <img
               id={index}
-              src={(index < hullValue) ? PilotHullImg : PilotNoHullImg}
+              name="hull"
+              src={
+                (index < hullValue) ? 
+                (
+                  (index < damageHullShip) ? 
+                  (
+                    (typeDamageHull[indexPilot][index] === 1) ? PilotSimpleDamagedHull : PilotCriticalDamagedHull
+                  ) : PilotHullImg
+                ) : PilotNoHullImg
+              }
               alt=""
+              onClick={ShildClick}
             />
           </section>
         ))
@@ -53,6 +142,10 @@ PilotShield.propTypes = {
   shieldValue: PropTypes.number.isRequired,
   hullValue: PropTypes.number.isRequired,
   changeLifeChip: PropTypes.func.isRequired,
+  damageShieldShip: PropTypes.number,
+  damageHullShip: PropTypes.number,
+  indexPilot: PropTypes.number.isRequired,
+  qtPilot: PropTypes.number.isRequired,
 }
 
 export default PilotShield
