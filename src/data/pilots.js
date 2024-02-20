@@ -1,9 +1,9 @@
-import { LukeSkywalker, DarthVader, MirandaDoni, SoontirFel, TurrPhennir, HortonSalm } from '../assets/pilots';
+import { LukeSkywalker, DarthVader, MirandaDoni, SoontirFel, TurrPhennir, HortonSalm, MaulerMithel, DarkCurse, BiggsDarklighter } from '../assets/pilots';
 import { BombasIon, RedeConner } from '../assets/updates/armas_secundarias/bombas';
 import { MisseisTeleguiados } from '../assets/updates/armas_secundarias/misseis';
 import { MunicaoExtra, TorpedoProton, TorpedosDardos } from '../assets/updates/armas_secundarias/torpedos';
-import { R2d2, R5d8 } from '../assets/updates/droids'
-import { AbrirGuarda, Evasivo, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
+import { R2d2, R5d8, R5p9 } from '../assets/updates/droids'
+import { AbrirGuarda, ForcarLimite, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
 import { TorreCanhaoIonico, TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
 import { Atirador } from '../assets/updates/tripulacao';
 
@@ -101,7 +101,7 @@ const pilots = [
     shipHull: 3,
     shipActions: ["foco", "pirueta", "impulso", "esquiva"],
     shipAbility: "Quando receber uma ficha de extresse, você pode colocar imediatamente uma ficha de foco em sua nave.",
-    shipMod: "",
+    shipMod: "sem modificações",
     shipModCost: 0,
     shipShieldExtra: 0,
     shipHullExtra: 0,
@@ -110,7 +110,7 @@ const pilots = [
     shipExpansions: ["elite"],
     shipUpdates: [
       [{droids: ["sem"], max: 1, cost: 0 }, {torres: ["sem"], max: 1, cost: 0 }], 
-      [{elite: [Evasivo], max: 1, cost: 2 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{elite: [ForcarLimite], max: 1, cost: 3 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
       [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
@@ -138,7 +138,7 @@ const pilots = [
     shipHull: 3,
     shipActions: ["foco", "pirueta", "impulso", "esquiva"],
     shipAbility: "Após realizar um ataque, você pode realizar uma ação de impulso ou pirueta gratuito.",
-    shipMod: "",
+    shipMod: "sem modificações",
     shipModCost: 0,
     shipShieldExtra: 0,
     shipHullExtra: 0,
@@ -175,7 +175,7 @@ const pilots = [
     shipHull: 5,
     shipActions: ["foco", "target"],
     shipAbility: "Ao atacar em alcance 2-3, você pode rerolar qualquer de seus resultados em branco.",
-    shipMod: "",
+    shipMod: "sem modificações",
     shipModCost: 0,
     shipShieldExtra: 0,
     shipHullExtra: 0,
@@ -220,11 +220,122 @@ const pilots = [
     shipManeuverExtra: 0,
     shipExpansions: ["torre", "torpedo", "torpedo", "missel", "tripulante", "bomba"],
     shipUpdates: [
-      [{droids: ["sem"], max: 1, cost: 4 }, {torres: [TorreLaserDupla], max: 1, cost: 4 }], 
-      [{elite: ["sem"], max: 1, cost: 4 }, {tripulação: [Atirador], max: 1, cost: 4 }], 
+      [{droids: ["sem"], max: 1, cost: 0 }, {torres: [TorreLaserDupla], max: 1, cost: 4 }], 
+      [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: [Atirador], max: 1, cost: 4 }], 
       [{torpedos: [MunicaoExtra, TorpedoProton, TorpedoProton], max: 3, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 4 }]
     ],
     shipBombs: {bombas: [RedeConner, RedeConner, BombasIon, BombasIon], max: 4, cost: 4 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
+  },
+  {
+    name: "Mauler Mithel",
+    pilotAbility: 7,
+    pilotExtraAbility: 0,
+    pilotFaction: "Empire",
+    pilotCost: 17,
+    ship: "Tie Fighter",
+    shipTitle: "",
+    shipCostTitle: 0,
+    shipMove: [[0,0,1,0,0,0],[0,0,1,0,0,4],[5,8,2,11,14,4],[5,9,2,12,14,0],[5,0,0,0,14,0],[0,0,0,0,0,0]],
+    image: MaulerMithel,
+    shipShield: 0,
+    shipDamage: 0,
+    shipWeapons: 2,
+    shipManeuver: 3,
+    shipHull: 3,
+    shipActions: ["foco", "pirueta", "esquiva"],
+    shipAbility: "Ao atacar em alcance 1, role 1 dado de ataque adicional.",
+    shipMod: "sem modificações",
+    shipModCost: 0,
+    shipShieldExtra: 0,
+    shipHullExtra: 0,
+    shipWeaponsExtra: 0,
+    shipManeuverExtra: 0,
+    shipExpansions: ["elite"],
+    shipUpdates: [
+      [{droids: ["sem"], max: 1, cost: 0 }, {torres: ["sem"], max: 1, cost: 0 }], 
+      [{elite: [AbrirGuarda], max: 1, cost: 4 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
+    ],
+    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
+  },
+  {
+    name: "Dark Curse",
+    pilotAbility: 6,
+    pilotExtraAbility: 0,
+    pilotFaction: "Empire",
+    pilotCost: 16,
+    ship: "Tie Fighter",
+    shipTitle: "",
+    shipCostTitle: 0,
+    shipMove: [[0,0,1,0,0,0],[0,0,1,0,0,4],[5,8,2,11,14,4],[5,9,2,12,14,0],[5,0,0,0,14,0],[0,0,0,0,0,0]],
+    image: DarkCurse,
+    shipShield: 0,
+    shipDamage: 0,
+    shipWeapons: 2,
+    shipManeuver: 3,
+    shipHull: 3,
+    shipActions: ["foco", "pirueta", "esquiva"],
+    shipAbility: "Quando você estiver defedendo, as naves atacantes não podem gastar fichas de foco ou rerolar dados de ataque.",
+    shipMod: "Dispositivo de Ocultamento: Aumente o valor da sua agilidade em 1. Se você for atingido por um ataquem descarte esta carta.",
+    shipModCost: 3,
+    shipShieldExtra: 0,
+    shipHullExtra: 0,
+    shipWeaponsExtra: 0,
+    shipManeuverExtra: 1,
+    shipExpansions: [""],
+    shipUpdates: [
+      [{droids: ["sem"], max: 1, cost: 0 }, {torres: ["sem"], max: 1, cost: 0 }], 
+      [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
+    ],
+    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipAdvancedUpdates: [
+      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+    ],
+    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+    targetDefense: [],
+  },
+  {
+    name: "Biggs Darklighter",
+    pilotAbility: 5,
+    pilotExtraAbility: 0,
+    pilotFaction: "Rebel",
+    pilotCost: 25,
+    ship: "X-wing",
+    shipTitle: "",
+    shipCostTitle: 0,
+    shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
+    image: BiggsDarklighter,
+    shipShield: 2,
+    shipDamage: 0,
+    shipWeapons: 3,
+    shipManeuver: 2,
+    shipHull: 3,
+    shipActions: ["foco", "target"],
+    shipAbility: "Outras naves amigas em alcance 1 não podem ser atacadas se o atacante puder, em vez disto, atacar você.",
+    shipMod: "Dispositivo de Ocultamento: Aumente o valor da sua agilidade em 1. Se você for atingido por um ataquem descarte esta carta.",
+    shipModCost: 3,
+    shipShieldExtra: 0,
+    shipHullExtra: 0,
+    shipWeaponsExtra: 0,
+    shipManeuverExtra: 1,
+    shipExpansions: ["elite","torpedos","droid"],
+    shipUpdates: [
+      [{droids: [R5p9], max: 1, cost: 3 }, {torres: ["sem"], max: 1, cost: 0 }], 
+      [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
+    ],
+    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
     ],

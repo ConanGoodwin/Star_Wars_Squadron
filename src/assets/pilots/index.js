@@ -1,7 +1,9 @@
 import ArvelCrynyd from './Arvel-crynyd.png';
+import BiggsDarklighter from './Biggs-darklighter.png';
 import Bossk from './Bossk.png';
 import CapitaoKagi from './Capitao-kagi-hd.png';
 import Cr90CorvetteFore from './Cr90-corvette-fore.png';
+import DarkCurse from './Dark-curse.png';
 import DarthVader from './DarthVader.png';
 import EsegeTuketu from './Esege-tuketu.png';
 // import EzraBridger from './Ezra-bridger.png';
@@ -15,6 +17,7 @@ import Ig88d from './Ig-88d.png';
 import LattsRazzi from './Latts-razzi.png';
 import LukeSkywalker from './LukeSkywalker.png';
 import MandalorianMercenary from './Mandalorian-mercenary.png';
+import MaulerMithel from './Mauler-mithel.png';
 import MirandaDoni from './MirandaDoni.png';
 import NashtahPup from './Nashtah-pup.png';
 import SoontirFel from './Soontir-fel.png';
@@ -28,9 +31,11 @@ import WardenSquadronPilot from './Warden-squadron-pilot.png';
 
 export {
   ArvelCrynyd,
+  BiggsDarklighter,
   Bossk,
   CapitaoKagi,
   Cr90CorvetteFore,
+  DarkCurse,
   DarthVader,
   EsegeTuketu,
   GarvenDreis,
@@ -43,6 +48,7 @@ export {
   LattsRazzi,
   LukeSkywalker,
   MandalorianMercenary,
+  MaulerMithel,
   MirandaDoni,
   NashtahPup,
   SoontirFel,
