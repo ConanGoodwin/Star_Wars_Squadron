@@ -6,9 +6,11 @@ import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
 import Gabarito from '../components/Gabarito';
 import ActionBar from '../components/ActionBar';
+import StressIcon from '../components/StressIcon';
 
 function PilotDetail() {
   const [oneShot, setOneShot] = useState(false);
+  const [key, setKey] = useState(false);
   const [index, setIndex] = useState(0);
   const [pilot, setPilot] = useState(pilots[0]);
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
@@ -20,7 +22,7 @@ function PilotDetail() {
       return obj;
     },{})
   );
-  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0, actionsActive}]);
+  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0, stress: 0, actionsActive}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -37,6 +39,7 @@ function PilotDetail() {
           ships.push({
             damageShieldShip: 0, 
             damageHullShips: 0, 
+            stress: 0,
             actionsActive: pilot.shipActions.reduce((obj,chave) => {
               obj[chave] = 0;
               return obj;
@@ -88,6 +91,11 @@ function PilotDetail() {
     ships[index].actionsActive[type] = value;
   }
 
+  const changeStress = () => {
+    (ships[index].stress === 0) ? ships[index].stress = 1 : ships[index].stress = 0;
+    setKey(!key);
+  }
+
   const navClickButton = ({target: { id }, keyCode}) => {
     if ((id === 'prev' || keyCode === 37) && index > 0) {
       setPilot(pilots[index - 1]);
@@ -129,8 +137,11 @@ function PilotDetail() {
          {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
-          <div className={PilotDetailStyle.float_div}>
+          <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_level_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
+          </div>
+          <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_stress_div}>
+            <StressIcon changeStress={changeStress} type={ships[index].stress} key={key} />
           </div>
           <ActionBar 
             actions={pilot.shipActions} 

@@ -29,13 +29,22 @@ span {
 }
 
 .float_div {
-  background-color: darkslateblue;
   border-radius: 100%;
   color: rgb(255, 183, 0);
   font-size: xx-large;
   position: absolute;
+}
+
+.position_level_div {
+  background-color: darkslateblue;
   top: 150px;
   left: 103px;
+}
+
+.position_stress_div {
+  top: 295px;
+  left: 165px;
+  z-index: 1;
 }
 
 .div_functions {
@@ -53,6 +62,7 @@ span {
 }
 
 .button_more_upgrade {
+  cursor: context-menu;
   width: 20px;
   height: 20px;
   padding: 0px;

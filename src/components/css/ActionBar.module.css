@@ -22,8 +22,10 @@
 
 .selected_action {
   border: 2px dashed red;
+  cursor: no-drop;
 }
 
 .no_selected_action {
   border: none;
+  cursor: pointer;
 }
