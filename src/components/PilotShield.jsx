@@ -105,7 +105,10 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
     }
 
     if (name === 'hull') {
-      if (id <= damageHullShip + 6 && id < damageShieldShip + 5 + damageHullShip) {
+      // console.log(`id: ${id}`);
+      // console.log(`damage hull: ${damageHullShip}`);
+      // console.log(`damage shield: ${damageShieldShip}`);
+      if (id <= damageHullShip + 6 && damageShieldShip >= shieldValue) {
         document.getElementById(id).style.cursor = 'default';
       } else {
         document.getElementById(id).style.cursor = 'not-allowed';
@@ -140,7 +143,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
       }
       {
         array.map((item, index) => (
-          <section key={index} id={index}>
+          <section key={index + 6}>
             <img
               id={index + 6}
               name="hull"
