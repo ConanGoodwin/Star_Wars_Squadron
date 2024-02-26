@@ -47,7 +47,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
           setTypeDamageHull(typeDamageHull.map(
             (pilot, iPilot) => (
               (iPilot === indexPilot) ? 
-              (pilot.map((item, index) => (index === parseInt(id)) ? 2 : item)) : 
+              (pilot.map((item, index) => (index === parseInt(id) - 6) ? 2 : item)) : 
               pilot
             )
           ));
@@ -61,7 +61,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
           setTypeDamageHull(typeDamageHull.map(
             (pilot, iPilot) => (
               (iPilot === indexPilot) ? 
-              (pilot.map((item, index) => (index === parseInt(id)) ? 0 : item)) : 
+              (pilot.map((item, index) => (index === parseInt(id) - 6) ? 0 : item)) : 
               pilot
             )
           ));
@@ -69,14 +69,14 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
           return true;
         }
         
-        if (parseInt(id) === damageHullShip) {
+        if (parseInt(id) - 6 === damageHullShip) {
           if (src.includes("hull.png")) {
             src = PilotSimpleDamagedHull;
             changeLifeChip(1, name);
             setTypeDamageHull(typeDamageHull.map(
               (pilot, iPilot) => (
                 (iPilot === indexPilot) ? 
-                (pilot.map((item, index) => (index === parseInt(id)) ? 1 : item)) : 
+                (pilot.map((item, index) => (index === parseInt(id) - 6) ? 1 : item)) : 
                 pilot
               )
             ));
@@ -92,6 +92,30 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
 
     return false;
   };
+
+  const mouseOver = ({target: { name, id}}) => {
+    if (name === 'shield') {
+      if (id <= damageShieldShip) {
+        document.getElementById(id).style.cursor = 'default';
+      } else {
+        document.getElementById(id).style.cursor = 'not-allowed';
+      }
+
+      return true;
+    }
+
+    if (name === 'hull') {
+      if (id <= damageHullShip + 6 && id < damageShieldShip + 5 + damageHullShip) {
+        document.getElementById(id).style.cursor = 'default';
+      } else {
+        document.getElementById(id).style.cursor = 'not-allowed';
+      }
+
+      return true;
+    }
+
+    return false;
+  }
 
   return (
     <div>
@@ -109,6 +133,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
               } 
               alt=""
               onClick={ShildClick}
+              onMouseOver={mouseOver}
             />
           </section>
         ))
@@ -117,7 +142,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
         array.map((item, index) => (
           <section key={index} id={index}>
             <img
-              id={index}
+              id={index + 6}
               name="hull"
               src={
                 (index < hullValue) ? 
@@ -130,6 +155,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
               }
               alt=""
               onClick={ShildClick}
+              onMouseOver={mouseOver}
             />
           </section>
         ))

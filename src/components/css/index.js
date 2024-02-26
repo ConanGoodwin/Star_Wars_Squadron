@@ -5,6 +5,7 @@ import CarrouselCardStyle from './CarrouselCard.module.css';
 import GabaritoStyle from './Gabarito.module.css';
 import IonIconStyle from './IonIcon.module.css';
 import NoWeponIconStyle from './NoWeponIcon.module.css';
+import PilotShieldStyle from './PilotShield.module.css';
 import StressIconStyle from './StressIcon.module.css';
 
 export {
@@ -15,5 +16,6 @@ export {
   GabaritoStyle,
   IonIconStyle,
   NoWeponIconStyle,
+  PilotShieldStyle,
   StressIconStyle,
 }
