@@ -3,6 +3,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { NoStress, Stress } from '../assets/actions'
 import { useEffect } from 'react'
+import { StressIconStyle } from './css';
 
 function StressIcon({changeStress, type}) {
   const [localType, setLocalType] = useState(type);
@@ -12,7 +13,12 @@ function StressIcon({changeStress, type}) {
   },[type]);
 
   return (
-    <img src={(localType === 0) ? NoStress : Stress} alt="" onClick={changeStress} />
+    <img 
+      src={(localType === 0) ? NoStress : Stress} 
+      alt="" 
+      onClick={changeStress} 
+      className={(localType === 0) ? StressIconStyle.no_selected : StressIconStyle.selected} 
+    />
   )
 }
 

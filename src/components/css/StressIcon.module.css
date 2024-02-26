@@ -1,0 +1,7 @@
+.selected {
+  cursor: no-drop;
+}
+
+.no_selected {
+  cursor: pointer;
+}
