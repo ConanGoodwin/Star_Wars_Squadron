@@ -1,6 +1,6 @@
 // import React from 'react'
 import PropTypes from 'prop-types'
-import { Esquiva, Foco } from "../assets/actions"
+import { BattleRoll, Esquiva, Foco, Impulso, Slam } from "../assets/actions"
 import TargetAtack from '../assets/target_atack.png';
 import { ActionBarStyle } from "./css"
 import { useEffect, useState } from 'react';
@@ -24,6 +24,15 @@ function ActionBar({actions, actionsActive, changeActionsActive}) {
         break;
       case "esquiva":
         src = Esquiva;
+        break;
+      case "pirueta":
+        src = BattleRoll;
+        break;
+      case "impulso":
+        src = Impulso;
+        break;
+      case "slam":
+        src = Slam;
         break;
       default:
         break;
