@@ -66,13 +66,10 @@ function PilotDetail() {
       );
       ships[index].actionsActive = (
         pilot.shipActions.reduce((obj,chave) => {
-          // console.log(`${chave}: ${ships[index].actionsActive[chave]}`);
           (ships[index].actionsActive[chave] === undefined) ? obj[chave] = 0 : obj[chave] = ships[index].actionsActive[chave];
-          // console.log(obj[chave]);
           return obj;
         },{})
       );
-      // console.log(ships);
     },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
 
@@ -135,7 +132,6 @@ function PilotDetail() {
           <div className={PilotDetailStyle.float_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
           </div>
-          {/* {console.log(ships[index].actionsActive)} */}
           <ActionBar 
             actions={pilot.shipActions} 
             actionsActive={ships[index].actionsActive}

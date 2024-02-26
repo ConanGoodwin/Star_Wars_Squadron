@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 import { Esquiva, Foco } from "../assets/actions"
 import TargetAtack from '../assets/target_atack.png';
 import { ActionBarStyle } from "./css"
+import { useEffect, useState } from 'react';
 
 function ActionBar({actions, actionsActive, changeActionsActive}) {
+  const [localActionsActive, setLocalActionsActive] = useState(actionsActive);
+
+  useEffect(() => {
+    setLocalActionsActive(actionsActive);
+  }, [actionsActive]);
+
   const selectIconAction = (action) => {
     let src = "";
-    // console.log(actionsActive);
-    // console.log(`${action}: ${actionsActive[action]}`);
 
     switch (action) {
       case "foco":
@@ -24,18 +29,13 @@ function ActionBar({actions, actionsActive, changeActionsActive}) {
         break;
     }
 
-    // console.log(
-    //   ActionBarStyle.image + " " + 
-    //       ((actionsActive[action]) ? ActionBarStyle.selected_action : ActionBarStyle.no_selected_action) + " " + action
-    // );
-
     return (
       <img 
         name={action}
         src={src} 
         alt="" 
         className={ActionBarStyle.image + " " + 
-          ((actionsActive[action]) ? ActionBarStyle.selected_action : ActionBarStyle.no_selected_action) } 
+          ((localActionsActive[action]) ? ActionBarStyle.selected_action : ActionBarStyle.no_selected_action) } 
         onClick={selectAction} 
       />
     )
