@@ -7,10 +7,14 @@ import pilots from '../data/pilots';
 import Gabarito from '../components/Gabarito';
 import ActionBar from '../components/ActionBar';
 import StressIcon from '../components/StressIcon';
+import NoWeponIcon from '../components/NoWeponIcon';
 
 function PilotDetail() {
   const [oneShot, setOneShot] = useState(false);
   const [key, setKey] = useState(false);
+  // const [noWepon, setNoWepon] = useState(
+  //   PilotDetailStyle.float_div + " " + PilotDetailStyle.position_nowepon_div + " " + PilotDetailStyle.no_display_nowepon
+  // );
   const [index, setIndex] = useState(0);
   const [pilot, setPilot] = useState(pilots[0]);
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
@@ -22,7 +26,7 @@ function PilotDetail() {
       return obj;
     },{})
   );
-  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0, stress: 0, actionsActive}]);
+  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0, stress: 0, noWepon: false, actionsActive}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -40,6 +44,7 @@ function PilotDetail() {
             damageShieldShip: 0, 
             damageHullShips: 0, 
             stress: 0,
+            noWepon: false,
             actionsActive: pilot.shipActions.reduce((obj,chave) => {
               obj[chave] = 0;
               return obj;
@@ -89,6 +94,10 @@ function PilotDetail() {
 
   const changeActionsActive = (value, type) => {
     ships[index].actionsActive[type] = value;
+    if (type === 'slam') {
+      (value == 1) ? ships[index].noWepon = true : ships[index].noWepon = false
+      setKey(!key);
+    }
   }
 
   const changeStress = () => {
@@ -142,6 +151,9 @@ function PilotDetail() {
           </div>
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_stress_div}>
             <StressIcon changeStress={changeStress} type={ships[index].stress} key={key} />
+          </div>
+          <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_nowepon_div}>
+            <NoWeponIcon displayNowepon={ships[index].noWepon} key={key} />
           </div>
           <ActionBar 
             actions={pilot.shipActions} 

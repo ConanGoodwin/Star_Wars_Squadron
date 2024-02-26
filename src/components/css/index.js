@@ -3,6 +3,7 @@ import PilotCardStyle from './PilotCard.module.css';
 import CardStyle from './Card.module.css';
 import CarrouselCardStyle from './CarrouselCard.module.css';
 import GabaritoStyle from './Gabarito.module.css';
+import NoWeponIconStyle from './NoWeponIcon.module.css';
 import StressIconStyle from './StressIcon.module.css';
 
 export {
@@ -11,5 +12,6 @@ export {
   CardStyle,
   CarrouselCardStyle,
   GabaritoStyle,
+  NoWeponIconStyle,
   StressIconStyle,
 }

@@ -47,6 +47,12 @@ span {
   z-index: 1;
 }
 
+.position_nowepon_div {
+  top: 198px;
+  left: 96px;
+  z-index: 1;
+}
+
 .div_functions {
   justify-content: center;
   display: flex;
