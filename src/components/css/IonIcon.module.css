@@ -1,0 +1,7 @@
+.ionized {
+  cursor: no-drop;
+}
+
+.no_ionized {
+  cursor: pointer;
+}

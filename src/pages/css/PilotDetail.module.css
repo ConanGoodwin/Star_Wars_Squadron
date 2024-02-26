@@ -53,6 +53,14 @@ span {
   z-index: 1;
 }
 
+.position_ion_div {
+  /* top: 27px;
+  left: 295px; */
+  top: 12px;
+  left: 305px;
+  z-index: 1;
+}
+
 .div_functions {
   justify-content: center;
   display: flex;

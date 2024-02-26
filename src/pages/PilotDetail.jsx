@@ -8,6 +8,7 @@ import Gabarito from '../components/Gabarito';
 import ActionBar from '../components/ActionBar';
 import StressIcon from '../components/StressIcon';
 import NoWeponIcon from '../components/NoWeponIcon';
+import IonIcon from '../components/IonIcon';
 
 function PilotDetail() {
   const [oneShot, setOneShot] = useState(false);
@@ -26,7 +27,9 @@ function PilotDetail() {
       return obj;
     },{})
   );
-  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0, stress: 0, noWepon: false, actionsActive}]);
+  const [ships] = useState([{
+    damageShieldShip: 0, damageHullShips: 0, ionized: false,
+    stress: 0, noWepon: false, actionsActive}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -98,12 +101,17 @@ function PilotDetail() {
       (value == 1) ? ships[index].noWepon = true : ships[index].noWepon = false
       setKey(!key);
     }
-  }
+  };
 
   const changeStress = () => {
     (ships[index].stress === 0) ? ships[index].stress = 1 : ships[index].stress = 0;
     setKey(!key);
-  }
+  };
+
+  const changeIonized = () => {
+    ships[index].ionized = !ships[index].ionized;
+    setKey(!key);
+  };
 
   const navClickButton = ({target: { id }, keyCode}) => {
     if ((id === 'prev' || keyCode === 37) && index > 0) {
@@ -148,6 +156,9 @@ function PilotDetail() {
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_level_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
+          </div>
+          <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_ion_div}>
+            <IonIcon ionized={ships[index].ionized} changeIonized={changeIonized} />
           </div>
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_stress_div}>
             <StressIcon changeStress={changeStress} type={ships[index].stress} key={key} />
