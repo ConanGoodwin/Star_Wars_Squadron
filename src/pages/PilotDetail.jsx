@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TargetAtack from '../assets/target_atack.png';
 import TargetDefense from '../assets/target_defense.png';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
@@ -8,12 +8,13 @@ import Gabarito from '../components/Gabarito';
 import ActionBar from '../components/ActionBar';
 
 function PilotDetail() {
+  const [oneShot, setOneShot] = useState(false);
   const [index, setIndex] = useState(0);
   const [pilot, setPilot] = useState(pilots[0]);
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
-  const [actionsActive, setActionsActive] = useState(
+  const [actionsActive] = useState(
     pilot.shipActions.reduce((obj,chave) => {
       obj[chave] = 0;
       return obj;
@@ -29,27 +30,23 @@ function PilotDetail() {
     pilot.shipAdvancedUpdates[0][0].cost + pilot.shipAdvancedUpdates[0][1].cost
   );
 
-  // const buildActionsActive = useCallback(
-  //   (i) => {
-  //     setActionsActive({});
-  
-  //     for (let j = 0; j < pilots[i].shipActions.length; j++) {
-  //       actionsActive[pilots[i].shipActions[j]] = 0;
-  //     }
-  
-  //     // return actionsActive;
-  //   }
-  // ,[actionsActive]);
-
   useEffect(
     () => {
       const att = () => {
         for (let i = 0; i < pilots.length; i++) {
-          ships.push({damageShieldShip: 0, damageHullShips: 0, actionsActive});
+          ships.push({
+            damageShieldShip: 0, 
+            damageHullShips: 0, 
+            actionsActive: pilot.shipActions.reduce((obj,chave) => {
+              obj[chave] = 0;
+              return obj;
+            },{})
+          });
         }
+        setOneShot(true);
       }
-      att();
-    },[actionsActive, ships]
+      if (!oneShot) att();
+    },[oneShot, pilot.shipActions, ships]
   );
 
   const attPilotStats = useEffect(
@@ -69,11 +66,13 @@ function PilotDetail() {
       );
       ships[index].actionsActive = (
         pilot.shipActions.reduce((obj,chave) => {
-          (obj[chave] === undefined) ? obj[chave] = 0 : obj[chave] = 1;
-          console.log(obj[chave]);
+          // console.log(`${chave}: ${ships[index].actionsActive[chave]}`);
+          (ships[index].actionsActive[chave] === undefined) ? obj[chave] = 0 : obj[chave] = ships[index].actionsActive[chave];
+          // console.log(obj[chave]);
           return obj;
         },{})
       );
+      // console.log(ships);
     },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
 

@@ -24,6 +24,11 @@ function ActionBar({actions, actionsActive, changeActionsActive}) {
         break;
     }
 
+    // console.log(
+    //   ActionBarStyle.image + " " + 
+    //       ((actionsActive[action]) ? ActionBarStyle.selected_action : ActionBarStyle.no_selected_action) + " " + action
+    // );
+
     return (
       <img 
         name={action}
