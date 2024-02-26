@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import TargetAtack from '../assets/target_atack.png';
 import TargetDefense from '../assets/target_defense.png';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
 import Gabarito from '../components/Gabarito';
+import ActionBar from '../components/ActionBar';
 
 function PilotDetail() {
   const [index, setIndex] = useState(0);
@@ -12,7 +13,13 @@ function PilotDetail() {
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
-  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0}]);
+  const [actionsActive, setActionsActive] = useState(
+    pilot.shipActions.reduce((obj,chave) => {
+      obj[chave] = 0;
+      return obj;
+    },{})
+  );
+  const [ships] = useState([{damageShieldShip: 0, damageHullShips: 0, actionsActive}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -22,15 +29,28 @@ function PilotDetail() {
     pilot.shipAdvancedUpdates[0][0].cost + pilot.shipAdvancedUpdates[0][1].cost
   );
 
+  // const buildActionsActive = useCallback(
+  //   (i) => {
+  //     setActionsActive({});
+  
+  //     for (let j = 0; j < pilots[i].shipActions.length; j++) {
+  //       actionsActive[pilots[i].shipActions[j]] = 0;
+  //     }
+  
+  //     // return actionsActive;
+  //   }
+  // ,[actionsActive]);
+
   useEffect(
     () => {
       const att = () => {
         for (let i = 0; i < pilots.length; i++) {
-          ships.push({damageShieldShip: 0, damageHullShips: 0});
+          ships.push({damageShieldShip: 0, damageHullShips: 0, actionsActive});
         }
       }
       att();
-    },[ships])
+    },[actionsActive, ships]
+  );
 
   const attPilotStats = useEffect(
     () => {
@@ -47,7 +67,14 @@ function PilotDetail() {
         pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
         pilot.shipBombs.cost + pilot.shipModCost
       );
-    },[hullShip, index, pilot.pilotCost, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
+      ships[index].actionsActive = (
+        pilot.shipActions.reduce((obj,chave) => {
+          (obj[chave] === undefined) ? obj[chave] = 0 : obj[chave] = 1;
+          console.log(obj[chave]);
+          return obj;
+        },{})
+      );
+    },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
 
   const changeLifeChip = (value, type) => {
@@ -60,6 +87,10 @@ function PilotDetail() {
       ships[index].damageHullShips = ships[index].damageHullShips + value;
     }
   };
+
+  const changeActionsActive = (value, type) => {
+    ships[index].actionsActive[type] = value;
+  }
 
   const navClickButton = ({target: { id }, keyCode}) => {
     if ((id === 'prev' || keyCode === 37) && index > 0) {
@@ -105,6 +136,12 @@ function PilotDetail() {
           <div className={PilotDetailStyle.float_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
           </div>
+          {/* {console.log(ships[index].actionsActive)} */}
+          <ActionBar 
+            actions={pilot.shipActions} 
+            actionsActive={ships[index].actionsActive}
+            changeActionsActive={changeActionsActive}
+          />
           <span>Ship Life: {lifeShip}</span>
           <TxtArea texto={pilot.shipMod + '\n' + '\n' + 'custo do mod: ' + pilot.shipModCost}/>
           <TxtArea texto={pilot.shipTitle + '\n' + '\n' + 'custo do titulo: ' + pilot.shipCostTitle}/>
