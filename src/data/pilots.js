@@ -35,7 +35,7 @@ const pilots = [
     shipManeuverExtra: 0,
     shipExpansions: ["elite","torpedos","droid"],
     shipUpdates: [
-      [{droids: [R2d2, R2d2], max: 2, cost: 4 }, {torres: [TorreLaserDupla, TorreLaserDupla], max: 2, cost: 6 }], 
+      [{droids: [R2d2, R5d8], max: 2, cost: 4 }, {torres: [TorreLaserDupla, TorreLaserDupla], max: 2, cost: 6 }], 
       [{elite: [AbrirGuarda, AbrirGuarda], max: 2, cost: 4 }, {tripulação: [Atirador, Atirador], max: 2, cost: 5 }], 
       [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
     ],
@@ -183,7 +183,7 @@ const pilots = [
     shipManeuverExtra: 0,
     shipExpansions: ["torre", "torpedo", "torpedo", "droid"],
     shipUpdates: [
-      [{droids: [R5d8], max: 1, cost: 3 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
+      [{droids: [R2d2], max: 1, cost: 4 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
       [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
       [{torpedos: [TorpedosDardos, TorpedoProton], max: 2, cost: 6 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],

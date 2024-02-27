@@ -29,7 +29,7 @@ function PilotDetail() {
   );
   const [ships] = useState([{
     damageShieldShip: 0, damageHullShips: 0, ionized: false,
-    stress: 0, noWepon: false, actionsActive}]);
+    qtIon: 0, stress: 0, noWepon: false, actionsActive}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -46,6 +46,8 @@ function PilotDetail() {
           ships.push({
             damageShieldShip: 0, 
             damageHullShips: 0, 
+            ionized: false,
+            qtIon: 0,
             stress: 0,
             noWepon: false,
             actionsActive: pilot.shipActions.reduce((obj,chave) => {
@@ -110,8 +112,16 @@ function PilotDetail() {
 
   const changeIonized = () => {
     ships[index].ionized = !ships[index].ionized;
+    ships[index].ionized ? changeQtIon("+") : ships[index].qtIon = 0;
     setKey(!key);
   };
+
+  const changeQtIon = (operator) => {
+    (operator === '+') ? ships[index].qtIon = ships[index].qtIon + 1 : (ships[index].qtIon > 0) ? ships[index].qtIon = ships[index].qtIon - 1 : null;
+    (ships[index].qtIon === 0) ? ships[index].ionized = false : null;
+    setKey(!key);
+  }
+
 
   const navClickButton = ({target: { id }, keyCode}) => {
     if ((id === 'prev' || keyCode === 37) && index > 0) {
@@ -158,7 +168,12 @@ function PilotDetail() {
             {pilot.pilotAbility + pilot.pilotExtraAbility}
           </div>
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_ion_div}>
-            <IonIcon ionized={ships[index].ionized} changeIonized={changeIonized} />
+            <IonIcon 
+              ionized={ships[index].ionized} 
+              changeIonized={changeIonized} 
+              changeQtIon={changeQtIon}
+              qtIon={ships[index].qtIon} 
+            />
           </div>
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_stress_div}>
             <StressIcon changeStress={changeStress} type={ships[index].stress} key={key} />
