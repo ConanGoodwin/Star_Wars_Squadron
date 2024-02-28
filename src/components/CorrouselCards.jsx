@@ -6,27 +6,56 @@ import { useCallback, useEffect, useState } from 'react'
 
 function CorrouselCards({update, extraSystem}) {
   const [atualUpdate, setAtualUpdate] = useState(update);
-  const extra = extraSystem;
+  let extra = [];
 
   const choiceExtraSystem = useCallback(() => {
+    // const extra = [...extraSystem];
+    // (extra) ? console.log(extra) : null;
+
     if (extra) {
       for (let i = 0; i < extra.length; i++) {
         for (let j = 0; j < extra[i].length; j++) {
           if (Object.values(extra[i][j])[0] != "sem") {
-            console.log(Object.values(extra[i][j])[0]);
+            // console.log(Object.values(extra[i][j])[0]);
             return setAtualUpdate(extra[i][j]);
           }
         }
       }
       
-      return setAtualUpdate(extraSystem[0][0]);
+      return setAtualUpdate(extra[0][0]);
     }
-  },[extra, extraSystem]);
+  },[extra]);
 
   useEffect(() => {
-    (update["droids"]) ? (
-      (update["droids"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
-    ) : setAtualUpdate(update)
+    const selectUpdate = () => {
+      // (update["droids"]) ? (
+      //   (update["droids"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
+      // ) : setAtualUpdate(update);
+
+      // (update["torres"]) ? (
+      //   (update["torres"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
+      // ) : setAtualUpdate(update);
+      // console.log(update);
+      (extraSystem.length > 0) ? extra = [...extraSystem] : null
+
+      if (update["torres"]) {
+        if (update["torres"][0] === "sem") {
+          (extra) ? extra[0] = extra[0].filter((_item, index) => index !== 0) : null;
+          choiceExtraSystem();
+
+          return true;
+        } else { 
+          setAtualUpdate(update);
+        }
+      } else { setAtualUpdate(update) }
+  
+      if (update["droids"]) {
+        (update["droids"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
+      } else {
+        setAtualUpdate(update);
+      }
+    }
+    selectUpdate();
   },[choiceExtraSystem, extraSystem, update])
 
   return (
