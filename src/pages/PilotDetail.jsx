@@ -75,7 +75,8 @@ function PilotDetail() {
         pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
         pilot.shipUpdates[1][0].cost + pilot.shipUpdates[1][1].cost +
         pilot.shipUpdates[2][0].cost + pilot.shipUpdates[2][1].cost +
-        pilot.shipBombs.cost + pilot.shipModCost
+        pilot.shipBombs.cost + pilot.shipModCost + pilot.shipCostTitle +
+        pilot.shipAdvancedUpdates[0][0].cost + pilot.shipAdvancedUpdates[0][1].cost
       );
       ships[index].actionsActive = (
         pilot.shipActions.reduce((obj,chave) => {
@@ -83,7 +84,7 @@ function PilotDetail() {
           return obj;
         },{})
       );
-    },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipBombs.cost, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
+    },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipAdvancedUpdates, pilot.shipBombs.cost, pilot.shipCostTitle, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
 
   const changeLifeChip = (value, type) => {
@@ -213,6 +214,7 @@ function PilotDetail() {
                     <CarrouselCard
                       key={iUpdate}
                       update={update}
+                      extraSystem={pilot.shipAdvancedUpdates}
                     />
                   ))
                 }
@@ -230,6 +232,7 @@ function PilotDetail() {
             <CarrouselCard
               key={1}
               update={pilot.shipBombs}
+              extraSystem={pilot.shipAdvancedUpdates[0][0]}
             />
             <div>
               <div className={PilotDetailStyle.target} >

@@ -6,6 +6,7 @@ import { R2d2, R5d8, R5p9 } from '../assets/updates/droids'
 import { AbrirGuarda, ForcarLimite, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
 import { TorreCanhaoIonico, TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
 import { Atirador } from '../assets/updates/tripulacao';
+import { CorretorPrecisao } from '../assets/updates/sistemas';
 
 
 const pilots = [
@@ -78,7 +79,7 @@ const pilots = [
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
-      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{sistemas: [CorretorPrecisao], max: 1, cost: 3 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
