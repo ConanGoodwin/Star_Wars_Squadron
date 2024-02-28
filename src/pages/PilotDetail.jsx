@@ -215,6 +215,7 @@ function PilotDetail() {
                       key={iUpdate}
                       update={update}
                       extraSystem={pilot.shipAdvancedUpdates}
+                      allUpdates={updates}
                     />
                   ))
                 }

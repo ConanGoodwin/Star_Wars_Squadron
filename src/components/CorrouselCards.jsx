@@ -4,14 +4,12 @@ import PilotCard from './PilotCard'
 import { CarrouselCardStyle } from './css'
 import { useCallback, useEffect, useState } from 'react'
 
-function CorrouselCards({update, extraSystem}) {
+function CorrouselCards({update, extraSystem, allUpdates}) {
   const [atualUpdate, setAtualUpdate] = useState(update);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   let extra = [];
 
   const choiceExtraSystem = useCallback(() => {
-    // const extra = [...extraSystem];
-    // (extra) ? console.log(extra) : null;
-
     if (extra) {
       for (let i = 0; i < extra.length; i++) {
         for (let j = 0; j < extra[i].length; j++) {
@@ -26,21 +24,17 @@ function CorrouselCards({update, extraSystem}) {
     }
   },[extra]);
 
+
   useEffect(() => {
     const selectUpdate = () => {
-      // (update["droids"]) ? (
-      //   (update["droids"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
-      // ) : setAtualUpdate(update);
-
-      // (update["torres"]) ? (
-      //   (update["torres"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
-      // ) : setAtualUpdate(update);
-      // console.log(update);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       (extraSystem.length > 0) ? extra = [...extraSystem] : null
 
       if (update["torres"]) {
         if (update["torres"][0] === "sem") {
-          (extra) ? extra[0] = extra[0].filter((_item, index) => index !== 0) : null;
+          (allUpdates[0]["droids"][0] === "sem") ? (
+            (extra) ? extra[0] = extra[0].filter((_item, index) => index > 0) : null
+          ) : null;
           choiceExtraSystem();
 
           return true;
@@ -50,7 +44,9 @@ function CorrouselCards({update, extraSystem}) {
       } else { setAtualUpdate(update) }
   
       if (update["droids"]) {
-        (update["droids"][0] === "sem") ? choiceExtraSystem() : setAtualUpdate(update)
+        if (update["droids"][0] === "sem") {
+          choiceExtraSystem();
+        } else {setAtualUpdate(update)}
       } else {
         setAtualUpdate(update);
       }
@@ -85,6 +81,8 @@ function CorrouselCards({update, extraSystem}) {
 CorrouselCards.propTypes = {
   update: PropTypes.object.isRequired,
   extraSystem: PropTypes.object,
+  qtExtra: PropTypes.number,
+  allUpdates: PropTypes.array,
 }
 
 export default CorrouselCards
