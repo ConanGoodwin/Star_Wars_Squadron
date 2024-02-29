@@ -13,9 +13,6 @@ import IonIcon from '../components/IonIcon';
 function PilotDetail() {
   const [oneShot, setOneShot] = useState(false);
   const [key, setKey] = useState(false);
-  // const [noWepon, setNoWepon] = useState(
-  //   PilotDetailStyle.float_div + " " + PilotDetailStyle.position_nowepon_div + " " + PilotDetailStyle.no_display_nowepon
-  // );
   const [index, setIndex] = useState(0);
   const [pilot, setPilot] = useState(pilots[0]);
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
@@ -29,7 +26,7 @@ function PilotDetail() {
   );
   const [ships] = useState([{
     damageShieldShip: 0, damageHullShips: 0, ionized: false,
-    qtIon: 0, stress: 0, noWepon: false, actionsActive}]);
+    qtIon: 0, qtExtra: 0, stress: 0, noWepon: false, actionsActive}]);
   const [totalCost, setTotalCosy] = useState(
     pilot.pilotCost + 
     pilot.shipUpdates[0][0].cost + pilot.shipUpdates[0][1].cost +
@@ -38,6 +35,7 @@ function PilotDetail() {
     pilot.shipBombs.cost + pilot.shipModCost + pilot.shipCostTitle +
     pilot.shipAdvancedUpdates[0][0].cost + pilot.shipAdvancedUpdates[0][1].cost
   );
+  const [qtExtra, setQtExtra] = useState(ships[index].qtExtra);
 
   useEffect(
     () => {
@@ -48,6 +46,7 @@ function PilotDetail() {
             damageHullShips: 0, 
             ionized: false,
             qtIon: 0,
+            qtExtra: 0,
             stress: 0,
             noWepon: false,
             actionsActive: pilot.shipActions.reduce((obj,chave) => {
@@ -84,6 +83,7 @@ function PilotDetail() {
           return obj;
         },{})
       );
+      setQtExtra(ships[index].qtExtra);
     },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipAdvancedUpdates, pilot.shipBombs.cost, pilot.shipCostTitle, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
 
@@ -123,8 +123,14 @@ function PilotDetail() {
     setKey(!key);
   }
 
+  const changeQtExtra = (value) => {
+    ships[index].qtExtra = ships[index].qtExtra + value;
+    // console.log(ships[index].qtExtra);
+    // setKey(!key);
+  }
 
   const navClickButton = ({target: { id }, keyCode}) => {
+    ships[index].qtExtra = 0;
     if ((id === 'prev' || keyCode === 37) && index > 0) {
       setPilot(pilots[index - 1]);
       setIndex(index - 1);
@@ -209,13 +215,15 @@ function PilotDetail() {
           {
             pilot.shipUpdates.map((updates, index) => (
               <div key={index} className={PilotDetailStyle.flex_row}>
+                {/* {ships[index] ? console.log(ships[index]) : null} */}
                 {
                   updates.map((update, iUpdate) => (
                     <CarrouselCard
                       key={iUpdate}
                       update={update}
                       extraSystem={pilot.shipAdvancedUpdates}
-                      allUpdates={updates}
+                      changeQtExtra={changeQtExtra}
+                      qtExtra={ qtExtra }
                     />
                   ))
                 }
@@ -231,9 +239,10 @@ function PilotDetail() {
           </div>
           <div className={PilotDetailStyle.flex_row}>
             <CarrouselCard
-              key={1}
+              // key={1}
               update={pilot.shipBombs}
               extraSystem={pilot.shipAdvancedUpdates[0][0]}
+              changeQtExtra={changeQtExtra}
             />
             <div>
               <div className={PilotDetailStyle.target} >
