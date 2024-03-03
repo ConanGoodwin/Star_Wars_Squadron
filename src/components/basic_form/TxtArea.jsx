@@ -10,6 +10,7 @@ function PilotDetail({texto}) {
       cols="36" 
       rows="10"
       className={CardStyle.card_border}
+      onChange={(e) => e.target.value}
     >
     </textarea>
   )

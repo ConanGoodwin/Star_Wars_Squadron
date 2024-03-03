@@ -34,13 +34,13 @@ function Gabarito({moveShip}) {
         <tbody>
           {
             moveShip.map((row, index) => (
-              <tr key={index}>
+              <tr key={index + 100000}>
                 <td>
                   {moveShip.length - 1 - index}
                 </td>
                 {
                   row.map((value, index) => (
-                    <td key={index}>
+                    <td key={index + 1000000}>
                       {dict[value]}
                     </td>
                   ))

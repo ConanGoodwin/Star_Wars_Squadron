@@ -12,7 +12,7 @@ function ActionBar({actions, actionsActive, changeActionsActive}) {
     setLocalActionsActive(actionsActive);
   }, [actionsActive]);
 
-  const selectIconAction = (action) => {
+  const selectIconAction = (action, index) => {
     let src = "";
 
     switch (action) {
@@ -40,6 +40,7 @@ function ActionBar({actions, actionsActive, changeActionsActive}) {
 
     return (
       <img 
+        key={index}
         name={action}
         src={src} 
         alt="" 
@@ -66,7 +67,7 @@ function ActionBar({actions, actionsActive, changeActionsActive}) {
   return (
     <div className={ActionBarStyle.action_bar}>
       {
-        actions.map((action) => selectIconAction(action))
+        actions.map((action, index) => selectIconAction(action, index))
       }
     </div>
   )

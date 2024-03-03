@@ -10,43 +10,44 @@ import { CorretorPrecisao } from '../assets/updates/sistemas';
 
 
 const pilots = [
-  {
-    name: "Luke Skywalker",
-    pilotAbility: 8,
-    pilotExtraAbility: 0,
-    pilotFaction: "Rebel",
-    pilotCost: 28,
-    ship: "X-wing",
-    shipTitle: "",
-    shipCostTitle: 0,
-    shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
-    image: LukeSkywalker,
-    shipShield: 2,
-    shipDamage: 0,
-    shipWeapons: 3,
-    shipManeuver: 2,
-    shipHull: 3,
-    shipActions: ["foco", "target"],
-    shipAbility: "Ao defender, você pode mudar um de seus resultados foco para um resultado esquiva",
-    shipMod: "sem modificações",
-    shipModCost: 0,
-    shipShieldExtra: 0,
-    shipHullExtra: 0,
-    shipWeaponsExtra: 0,
-    shipManeuverExtra: 0,
-    shipExpansions: ["elite","torpedos","droid"],
-    shipUpdates: [
-      [{droids: [R2d2, R5d8], max: 2, cost: 4 }, {torres: [TorreLaserDupla, TorreLaserDupla], max: 2, cost: 6 }], 
-      [{elite: [AbrirGuarda, AbrirGuarda], max: 2, cost: 4 }, {tripulação: [Atirador, Atirador], max: 2, cost: 5 }], 
-      [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
-    ],
-    shipBombs: {bombas: [RedeConner, RedeConner, RedeConner, RedeConner, RedeConner], max: 5, cost: 4 },
-    shipAdvancedUpdates: [
-      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
-    ],
-    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
-    targetDefense: [],
-  },
+  // {
+  //   name: "Luke Skywalker",
+  //   pilotAbility: 8,
+  //   pilotExtraAbility: 0,
+  //   pilotFaction: "Rebel",
+  //   pilotCost: 28,
+  //   ship: "X-wing",
+  //   shipTitle: "",
+  //   shipCostTitle: 0,
+  //   shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
+  //   image: LukeSkywalker,
+  //   shipShield: 2,
+  //   shipDamage: 0,
+  //   shipWeapons: 3,
+  //   shipManeuver: 2,
+  //   shipHull: 3,
+  //   shipActions: ["foco", "target"],
+  //   shipAbility: "Ao defender, você pode mudar um de seus resultados foco para um resultado esquiva",
+  //   shipMod: "sem modificações",
+  //   shipModCost: 0,
+  //   shipShieldExtra: 0,
+  //   shipHullExtra: 0,
+  //   shipWeaponsExtra: 0,
+  //   shipManeuverExtra: 0,
+  //   shipExpansions: ["elite","torpedos","droid"],
+  //   shipUpdates: [
+  //     [{droids: [R2d2, R5d8], max: 2, cost: 4 }, {torres: [TorreLaserDupla, TorreLaserDupla], max: 2, cost: 6 }], 
+  //     [{elite: [AbrirGuarda, AbrirGuarda], max: 2, cost: 4 }, {tripulação: [Atirador, Atirador], max: 2, cost: 5 }], 
+  //     [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
+  //   ],
+  //   shipBombs: {bombas: [RedeConner, RedeConner, RedeConner, RedeConner, RedeConner], max: 5, cost: 4 },
+  //   shipAdvancedUpdates: [
+  //     [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+  //     [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
+  //   ],
+  //   targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+  //   targetDefense: [],
+  // },
   {
     name: "Darth Vader",
     pilotAbility: 9,
@@ -79,7 +80,8 @@ const pilots = [
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
-      [{sistemas: [CorretorPrecisao], max: 1, cost: 3 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{sistemas: [CorretorPrecisao], max: 1, cost: 3 }, {ilegais: ["sem"], max: 1, cost: 0 }],
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }],  
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -117,6 +119,7 @@ const pilots = [
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -154,6 +157,7 @@ const pilots = [
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -184,13 +188,14 @@ const pilots = [
     shipManeuverExtra: 0,
     shipExpansions: ["torre", "torpedo", "torpedo", "droid"],
     shipUpdates: [
-      [{droids: [R2d2], max: 1, cost: 4 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
+      [{droids: [R5p9], max: 1, cost: 4 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
       [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
       [{torpedos: [TorpedosDardos, TorpedosIon], max: 2, cost: 7 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -228,6 +233,7 @@ const pilots = [
     shipBombs: {bombas: [RedeConner, RedeConner, BombasIon, BombasIon], max: 4, cost: 4 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -265,6 +271,7 @@ const pilots = [
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -302,6 +309,7 @@ const pilots = [
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],
@@ -332,13 +340,14 @@ const pilots = [
     shipManeuverExtra: 1,
     shipExpansions: ["elite","torpedos","droid"],
     shipUpdates: [
-      [{droids: [R5p9], max: 1, cost: 3 }, {torres: ["sem"], max: 1, cost: 0 }], 
+      [{droids: [R2d2], max: 1, cost: 3 }, {torres: ["sem"], max: 1, cost: 0 }], 
       [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
       [{torpedos: ["sem"], max: 1, cost: 0 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
     ],
     targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
     targetDefense: [],

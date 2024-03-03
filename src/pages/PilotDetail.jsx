@@ -9,6 +9,7 @@ import ActionBar from '../components/ActionBar';
 import StressIcon from '../components/StressIcon';
 import NoWeponIcon from '../components/NoWeponIcon';
 import IonIcon from '../components/IonIcon';
+import { ClearAll } from '../assets/actions';
 
 function PilotDetail() {
   const [oneShot, setOneShot] = useState(false);
@@ -35,7 +36,9 @@ function PilotDetail() {
     pilot.shipBombs.cost + pilot.shipModCost + pilot.shipCostTitle +
     pilot.shipAdvancedUpdates[0][0].cost + pilot.shipAdvancedUpdates[0][1].cost
   );
-  const [qtExtra, setQtExtra] = useState(ships[index].qtExtra);
+  // const [qtExtra, setQtExtra] = useState(ships[index].qtExtra);
+  const [qtExtra, setQtExtra] = useState(0);
+  // const [value,setValue] = useState(0);
 
   useEffect(
     () => {
@@ -61,6 +64,11 @@ function PilotDetail() {
     },[oneShot, pilot.shipActions, ships]
   );
 
+  useEffect(
+    () => {
+      setPilot(pilots[index]);
+    },[index]);
+
   const attPilotStats = useEffect(
     () => {
       setShieldShip(pilot.shipShield + pilot.shipShieldExtra);
@@ -83,9 +91,16 @@ function PilotDetail() {
           return obj;
         },{})
       );
-      setQtExtra(ships[index].qtExtra);
+      // setQtExtra(ships[index + 1].qtExtra);
+      setQtExtra(0);
     },[hullShip, index, pilot.pilotCost, pilot.shipActions, pilot.shipAdvancedUpdates, pilot.shipBombs.cost, pilot.shipCostTitle, pilot.shipHull, pilot.shipHullExtra, pilot.shipModCost, pilot.shipShield, pilot.shipShieldExtra, pilot.shipUpdates, shieldShip, ships]
   )
+
+// const attQtExtra = useEffect(
+//   () => {
+//     setQtExtra(value);
+//   }
+//   ,[value]);
 
   const changeLifeChip = (value, type) => {
     setLifeShip(lifeShip - value);
@@ -123,30 +138,49 @@ function PilotDetail() {
     setKey(!key);
   }
 
-  const changeQtExtra = (value) => {
-    ships[index].qtExtra = ships[index].qtExtra + value;
+  const changeQtExtra = (qt) => {
+    // ships[index + 1].qtExtra = value;
+    // setValue(qt);
+    // attQtExtra
+    setQtExtra(qt);
+    console.log(qt);
+    
+    // setKey(false);
+    console.log(qtExtra);
     // console.log(ships[index].qtExtra);
     // setKey(!key);
   }
+
+  const clearAllActions = () => {
+    console.log('oi');
+    for (let i = 0; i < pilots.length; i++) {
+      ships[i].actionsActive = pilot.shipActions.reduce((obj,chave) => {
+          obj[chave] = 0;
+          return obj;
+        },{});
+    }
+    setKey(!key)
+  };
 
   const navClickButton = ({target: { id }, keyCode}) => {
     ships[index].qtExtra = 0;
     if ((id === 'prev' || keyCode === 37) && index > 0) {
       setPilot(pilots[index - 1]);
       setIndex(index - 1);
-      attPilotStats();
+      attPilotStats;
+      // setIndex(index - 1);
     } else if ((id === 'next' || keyCode === 39) && index < pilots.length - 1) {
       setPilot(pilots[index + 1]);
       setIndex(index + 1);
-      attPilotStats();
-      setIndex(index + 1);
+      attPilotStats;
+      // setIndex(index + 1);
     }
   };
 
   const buildTargetDefense = () => {
     const rows = [];
     for (let i = 0; i < 10; i++) {
-        rows.push(<img src={TargetDefense} alt="" className={PilotDetailStyle.targetImg} />);
+        rows.push(<img src={TargetDefense} alt="" className={PilotDetailStyle.targetImg} key={5000 * i}/>);
     }
 
     return rows;
@@ -197,13 +231,19 @@ function PilotDetail() {
           <TxtArea texto={pilot.shipMod + '\n' + '\n' + 'custo do mod: ' + pilot.shipModCost}/>
           <TxtArea texto={pilot.shipTitle + '\n' + '\n' + 'custo do titulo: ' + pilot.shipCostTitle}/>
           <div className={PilotDetailStyle.div_functions}>
+            <div className={PilotDetailStyle.div_clear_action}>
+              <button id='clear' onClick={clearAllActions} className={PilotDetailStyle.button_clear_all_actions}>
+                <img src={ClearAll} onClick={clearAllActions} role='button' alt="" />
+              </button>
+              <span style={{textAlign: 'center'}}>clear all actions</span>
+            </div>
             <div>
               <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
-              {"<...[" + index + "]...>"}
+              {"<.[" + index + "].>"}
               <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
             </div>
             <div className={PilotDetailStyle.div_more_upgrade}>
-              <button id='moreUpdtae' onClick={""} tabIndex="0" className={PilotDetailStyle.button_more_upgrade}>+</button>
+              <button id='moreUpdtae' onClick={() => ""} className={PilotDetailStyle.button_more_upgrade}>+</button>
               more upgrades
             </div>
           </div>
@@ -216,14 +256,17 @@ function PilotDetail() {
             pilot.shipUpdates.map((updates, index) => (
               <div key={index} className={PilotDetailStyle.flex_row}>
                 {/* {ships[index] ? console.log(ships[index]) : null} */}
+                {/* {console.log(`up: ${JSON.stringify(pilot.shipAdvancedUpdates)}`)} */}
                 {
                   updates.map((update, iUpdate) => (
                     <CarrouselCard
-                      key={iUpdate}
-                      update={update}
-                      extraSystem={pilot.shipAdvancedUpdates}
-                      changeQtExtra={changeQtExtra}
+                      stteste={"caralho de asa"} 
+                      key={iUpdate} 
+                      update={update} 
+                      extraSystem={pilot.shipAdvancedUpdates} 
+                      changeQtExtra={async (value) => changeQtExtra(value)} 
                       qtExtra={ qtExtra }
+                      st={key}
                     />
                   ))
                 }
@@ -243,6 +286,7 @@ function PilotDetail() {
               update={pilot.shipBombs}
               extraSystem={pilot.shipAdvancedUpdates[0][0]}
               changeQtExtra={changeQtExtra}
+              stteste={"teste"}
             />
             <div>
               <div className={PilotDetailStyle.target} >

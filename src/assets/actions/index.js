@@ -1,4 +1,5 @@
 import BattleRoll from './battleRoll.png';
+import ClearAll from './clearAllAction.png';
 import Esquiva from './esquiva.png';
 import Foco from './foco.png';
 import Impulso from './impulso.png';
@@ -11,6 +12,7 @@ import Stress from './stress.png';
 
 export {
   BattleRoll,
+  ClearAll,
   Esquiva,
   Foco,
   Impulso,
