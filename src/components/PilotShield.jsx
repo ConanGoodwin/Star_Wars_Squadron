@@ -10,9 +10,11 @@ import {
   PilotSimpleDamagedHull,
 } from '../assets/status_dameged';
 import { useEffect, useState } from 'react';
+import { PilotShieldStyle } from './css';
 
 function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, damageHullShip, indexPilot, qtPilot}) {
-  const array = [1, 2, 3, 4, 5, 6];
+  const [qtShield, setQtShield] = useState([1, 2, 3, 4, 5, 6]);
+  const [qtHull, setQtHull] = useState([1, 2, 3, 4, 5, 6]);
   const [typeDamageHull,setTypeDamageHull] = useState([[0,0,0,0,0,0]]);
 
   useEffect(() => {
@@ -20,6 +22,25 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
       typeDamageHull.push([0, 0, 0, 0, 0, 0]);
     }
   },[qtPilot, typeDamageHull]);
+
+  useEffect(() => {
+      if (qtShield.length < shieldValue) {
+        for (let i = 0; i < shieldValue - qtShield.length; i++) {
+          qtShield.push(qtShield.length + 1);
+        }
+      } else {
+        setQtShield([1, 2, 3, 4, 5, 6]);
+      }
+
+      if (qtHull.length < hullValue) {
+        for (let i = 0; i < hullValue - qtHull.length; i++) {
+          qtHull.push(qtHull.length + 1);
+        }
+      } else {
+        setQtHull([1, 2, 3, 4, 5, 6]);
+      }
+    },
+    [hullValue, qtHull, qtShield, shieldValue]);
 
 
   const ShildClick = ({target: { name, id, src}}) => {
@@ -121,48 +142,52 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
   }
 
   return (
-    <div>
-      {
-        array.map((item, index) => (
-          <section key={index}>
-            <img 
-              id={index}
-              name="shield"
-              src={
-                (index < shieldValue) ? 
-                (
-                  (index < damageShieldShip) ? PilotDamegdShieldImg : PilotShieldImg
-                ) : PilotNoShieldImg
-              } 
-              alt=""
-              onClick={ShildClick}
-              onMouseOver={mouseOver}
-            />
-          </section>
-        ))
-      }
-      {
-        array.map((item, index) => (
-          <section key={index + 6}>
-            <img
-              id={index + 6}
-              name="hull"
-              src={
-                (index < hullValue) ? 
-                (
-                  (index < damageHullShip) ? 
+    <div className={PilotShieldStyle.area}>
+      {/* <div> */}
+        {
+          qtShield.map((item, index) => (
+            <section key={index}>
+              <img 
+                id={index}
+                name="shield"
+                src={
+                  (index < shieldValue) ? 
                   (
-                    (typeDamageHull[indexPilot][index] === 1) ? PilotSimpleDamagedHull : PilotCriticalDamagedHull
-                  ) : PilotHullImg
-                ) : PilotNoHullImg
-              }
-              alt=""
-              onClick={ShildClick}
-              onMouseOver={mouseOver}
-            />
-          </section>
-        ))
-      }
+                    (index < damageShieldShip) ? PilotDamegdShieldImg : PilotShieldImg
+                  ) : PilotNoShieldImg
+                } 
+                alt=""
+                onClick={ShildClick}
+                onMouseOver={mouseOver}
+              />
+            </section>
+          ))
+        }
+      {/* </div> */}
+      {/* <div> */}
+        {
+          qtHull.map((item, index) => (
+            <section key={index + 6}>
+              <img
+                id={index + 6}
+                name="hull"
+                src={
+                  (index < hullValue) ? 
+                  (
+                    (index < damageHullShip) ? 
+                    (
+                      (typeDamageHull[indexPilot][index] === 1) ? PilotSimpleDamagedHull : PilotCriticalDamagedHull
+                    ) : PilotHullImg
+                  ) : PilotNoHullImg
+                }
+                alt=""
+                onClick={ShildClick}
+                onMouseOver={mouseOver}
+              />
+            </section>
+          ))
+        }
+      {/* </div> */}
     </div>
   )
 }
