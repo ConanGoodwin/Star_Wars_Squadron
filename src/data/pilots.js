@@ -2,8 +2,8 @@ import { LukeSkywalker, DarthVader, MirandaDoni, SoontirFel, TurrPhennir, Horton
 import { BombasIon, RedeConner } from '../assets/updates/armas_secundarias/bombas';
 import { MisseisTeleguiados } from '../assets/updates/armas_secundarias/misseis';
 import { MunicaoExtra, TorpedoProton, TorpedosDardos, TorpedosIon } from '../assets/updates/armas_secundarias/torpedos';
-import { R2d2, R5d8, R5p9 } from '../assets/updates/droids'
-import { AbrirGuarda, ForcarLimite, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
+import { R2d2, R2d6, R5d8, R5p9 } from '../assets/updates/droids'
+import { AbrirGuarda, Competencia, ForcarLimite, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
 import { TorreCanhaoIonico, TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
 import { Atirador } from '../assets/updates/tripulacao';
 import { CorretorPrecisao } from '../assets/updates/sistemas';
@@ -188,8 +188,8 @@ const pilots = [
     shipManeuverExtra: 0,
     shipExpansions: ["torre", "torpedo", "torpedo", "droid"],
     shipUpdates: [
-      [{droids: [R5p9], max: 1, cost: 4 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
-      [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
+      [{droids: [R2d6], max: 1, cost: 1 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
+      [{elite: [Competencia], max: 1, cost: 4 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
       [{torpedos: [TorpedosDardos, TorpedosIon], max: 2, cost: 7 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
     shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
