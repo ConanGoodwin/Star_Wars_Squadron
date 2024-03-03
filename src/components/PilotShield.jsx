@@ -68,7 +68,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
           setTypeDamageHull(typeDamageHull.map(
             (pilot, iPilot) => (
               (iPilot === indexPilot) ? 
-              (pilot.map((item, index) => (index === parseInt(id) - 6) ? 2 : item)) : 
+              (pilot.map((item, index) => (index === parseInt(id) - qtShield.length) ? 2 : item)) : 
               pilot
             )
           ));
@@ -82,7 +82,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
           setTypeDamageHull(typeDamageHull.map(
             (pilot, iPilot) => (
               (iPilot === indexPilot) ? 
-              (pilot.map((item, index) => (index === parseInt(id) - 6) ? 0 : item)) : 
+              (pilot.map((item, index) => (index === parseInt(id) - qtShield.length) ? 0 : item)) : 
               pilot
             )
           ));
@@ -90,14 +90,14 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
           return true;
         }
         
-        if (parseInt(id) - 6 === damageHullShip) {
+        if (parseInt(id) - qtShield.length === damageHullShip) {
           if (src.includes("hull.png")) {
             src = PilotSimpleDamagedHull;
             changeLifeChip(1, name);
             setTypeDamageHull(typeDamageHull.map(
               (pilot, iPilot) => (
                 (iPilot === indexPilot) ? 
-                (pilot.map((item, index) => (index === parseInt(id) - 6) ? 1 : item)) : 
+                (pilot.map((item, index) => (index === parseInt(id) - qtShield.length) ? 1 : item)) : 
                 pilot
               )
             ));
@@ -129,7 +129,7 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
       // console.log(`id: ${id}`);
       // console.log(`damage hull: ${damageHullShip}`);
       // console.log(`damage shield: ${damageShieldShip}`);
-      if (id <= damageHullShip + 6 && damageShieldShip >= shieldValue) {
+      if (id <= damageHullShip + qtShield.length && damageShieldShip >= shieldValue) {
         document.getElementById(id).style.cursor = 'default';
       } else {
         document.getElementById(id).style.cursor = 'not-allowed';
@@ -167,9 +167,9 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
       {/* <div> */}
         {
           qtHull.map((item, index) => (
-            <section key={index + 6}>
+            <section key={index + qtShield.length}>
               <img
-                id={index + 6}
+                id={index + qtShield.length}
                 name="hull"
                 src={
                   (index < hullValue) ? 

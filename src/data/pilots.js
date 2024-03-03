@@ -2,7 +2,7 @@ import { LukeSkywalker, DarthVader, MirandaDoni, SoontirFel, TurrPhennir, Horton
 import { BombasIon, RedeConner } from '../assets/updates/armas_secundarias/bombas';
 import { MisseisTeleguiados } from '../assets/updates/armas_secundarias/misseis';
 import { MunicaoExtra, TorpedoProton, TorpedosDardos, TorpedosIon } from '../assets/updates/armas_secundarias/torpedos';
-import { R2d2, R2d6, R5d8, R5p9 } from '../assets/updates/droids'
+import { R2d2, R2d6, R5d8 } from '../assets/updates/droids'
 import { AbrirGuarda, Competencia, ForcarLimite, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
 import { TorreCanhaoIonico, TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
 import { Atirador } from '../assets/updates/tripulacao';
