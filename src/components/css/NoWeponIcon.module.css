@@ -1,0 +1,7 @@
+.display_nowepon {
+  display: flex;
+}
+
+.no_display_nowepon {
+  display: none;
+}

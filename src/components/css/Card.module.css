@@ -1,0 +1,8 @@
+.card_border {
+  background-color: rgba(109, 109, 109, 0.826);
+  border: 5px solid black;
+  border-radius: 5%;
+  color: black;
+  /* font-weight: bold; */
+  margin: 3px;
+}

@@ -1,0 +1,31 @@
+.image {
+  width: 35px;
+  margin: 2px;
+}
+
+.action_bar {
+  align-items: center;
+  background-image: url('../../assets/ActionBar.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  height: 65px;
+  justify-content: center;
+  left: 174px;
+  overflow: hidden;
+  overflow-x: auto;
+  position: absolute;
+  top: 296px;
+  width: 175px;
+}
+
+.selected_action {
+  border: 2px dashed red;
+  cursor: no-drop;
+}
+
+.no_selected_action {
+  border: none;
+  cursor: pointer;
+}

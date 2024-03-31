@@ -1,0 +1,28 @@
+.ionized {
+  cursor: no-drop;
+}
+
+.no_ionized {
+  cursor: pointer;
+}
+
+.div_qtIon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: 'rgb(0,0,0,0.5)';
+  height: 20px;
+  font-size: small;
+  padding: 0px;
+  width: 20px;
+}
+
+.input {
+  background-color: rgb(0, 0, 0, 0.7);
+  height: 20px;
+  padding: 2px;
+  width: 7px;
+}

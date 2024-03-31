@@ -1,6 +1,15 @@
-.container {
-  border: 5px solid black;
-  border-radius: 5%;
-  margin: 5px;
+.display_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pilot {
+  display: flex;
   width: 7cm;
+}
+
+.update {
+  width: 4.3cm;
+  height: 6.5cm;
 }
