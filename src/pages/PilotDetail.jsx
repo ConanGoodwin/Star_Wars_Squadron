@@ -117,8 +117,8 @@ function PilotDetail() {
     ships[index].actionsActive[type] = value;
     if (type === 'slam') {
       (value == 1) ? ships[index].noWepon = true : ships[index].noWepon = false
-      setKey(!key);
     }
+    setKey(!key);
   };
 
   const changeStress = () => {
@@ -154,6 +154,7 @@ function PilotDetail() {
   const clearAllActions = () => {
     console.log('oi');
     for (let i = 0; i < pilots.length; i++) {
+      ships[i].noWepon = false;
       ships[i].actionsActive = pilot.shipActions.reduce((obj,chave) => {
           obj[chave] = 0;
           return obj;
@@ -239,7 +240,7 @@ function PilotDetail() {
             </div>
             <div>
               <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
-              {"<.[" + index + "].>"}
+              {"<.[" + (index + 1) + "].>"}
               <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
             </div>
             <div className={PilotDetailStyle.div_more_upgrade}>

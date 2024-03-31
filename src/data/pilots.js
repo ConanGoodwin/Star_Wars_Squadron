@@ -1,7 +1,7 @@
 import { LukeSkywalker, DarthVader, MirandaDoni, SoontirFel, TurrPhennir, HortonSalm, MaulerMithel, DarkCurse, BiggsDarklighter } from '../assets/pilots';
 import { BombasIon, RedeConner } from '../assets/updates/armas_secundarias/bombas';
 import { MisseisTeleguiados } from '../assets/updates/armas_secundarias/misseis';
-import { MunicaoExtra, TorpedoProton, TorpedosDardos, TorpedosIon } from '../assets/updates/armas_secundarias/torpedos';
+import { ArmamentoBomba, MunicaoExtra, TorpedoProton, TorpedosDardos, TorpedosIon, TorpedosProtonAvancados } from '../assets/updates/armas_secundarias/torpedos';
 import { R2d2, R2d6, R5d8 } from '../assets/updates/droids'
 import { AbrirGuarda, Competencia, ForcarLimite, InstintosVeterano, PeritoPilotagem } from '../assets/updates/elite';
 import { TorreCanhaoIonico, TorreLaserDupla } from '../assets/updates/armas_secundarias/torres';
@@ -10,44 +10,44 @@ import { CorretorPrecisao } from '../assets/updates/sistemas';
 
 
 const pilots = [
-  {
-    name: "Luke Skywalker",
-    pilotAbility: 8,
-    pilotExtraAbility: 0,
-    pilotFaction: "Rebel",
-    pilotCost: 28,
-    ship: "X-wing",
-    shipTitle: "",
-    shipCostTitle: 0,
-    shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
-    image: LukeSkywalker,
-    shipShield: 8,
-    shipDamage: 0,
-    shipWeapons: 3,
-    shipManeuver: 2,
-    shipHull: 10,
-    shipActions: ["foco", "target"],
-    shipAbility: "Ao defender, você pode mudar um de seus resultados foco para um resultado esquiva",
-    shipMod: "sem modificações",
-    shipModCost: 0,
-    shipShieldExtra: 0,
-    shipHullExtra: 0,
-    shipWeaponsExtra: 0,
-    shipManeuverExtra: 0,
-    shipExpansions: ["elite","torpedos","droid"],
-    shipUpdates: [
-      [{droids: [R2d2, R5d8], max: 2, cost: 4 }, {torres: [TorreLaserDupla, TorreLaserDupla], max: 2, cost: 6 }], 
-      [{elite: [AbrirGuarda, AbrirGuarda], max: 2, cost: 4 }, {tripulação: [Atirador, Atirador], max: 2, cost: 5 }], 
-      [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
-    ],
-    shipBombs: {bombas: [RedeConner, RedeConner, RedeConner, RedeConner, RedeConner], max: 5, cost: 4 },
-    shipAdvancedUpdates: [
-      [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
-      [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
-    ],
-    targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
-    targetDefense: [],
-  },
+  // {
+  //   name: "Luke Skywalker",
+  //   pilotAbility: 8,
+  //   pilotExtraAbility: 0,
+  //   pilotFaction: "Rebel",
+  //   pilotCost: 28,
+  //   ship: "X-wing",
+  //   shipTitle: "",
+  //   shipCostTitle: 0,
+  //   shipMove: [[0,0,0,0,0,0],[0,0,1,0,0,4],[5,8,1,11,14,0],[5,8,2,11,14,0],[0,9,2,12,0,0],[0,0,0,0,0,0]],
+  //   image: LukeSkywalker,
+  //   shipShield: 8,
+  //   shipDamage: 0,
+  //   shipWeapons: 3,
+  //   shipManeuver: 2,
+  //   shipHull: 10,
+  //   shipActions: ["foco", "target"],
+  //   shipAbility: "Ao defender, você pode mudar um de seus resultados foco para um resultado esquiva",
+  //   shipMod: "sem modificações",
+  //   shipModCost: 0,
+  //   shipShieldExtra: 0,
+  //   shipHullExtra: 0,
+  //   shipWeaponsExtra: 0,
+  //   shipManeuverExtra: 0,
+  //   shipExpansions: ["elite","torpedos","droid"],
+  //   shipUpdates: [
+  //     [{droids: [R2d2, R5d8], max: 2, cost: 4 }, {torres: [TorreLaserDupla, TorreLaserDupla], max: 2, cost: 6 }], 
+  //     [{elite: [AbrirGuarda, AbrirGuarda], max: 2, cost: 4 }, {tripulação: [Atirador, Atirador], max: 2, cost: 5 }], 
+  //     [{torpedos: [TorpedoProton, TorpedoProton], max: 2, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 5 }]
+  //   ],
+  //   shipBombs: {bombas: [RedeConner, RedeConner, RedeConner, RedeConner, RedeConner], max: 5, cost: 4 },
+  //   shipAdvancedUpdates: [
+  //     [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
+  //     [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
+  //   ],
+  //   targetLock: { ship: "", levelPilot: "", namePilot: "", letterIndex: ""},
+  //   targetDefense: [],
+  // },
   {
     name: "Darth Vader",
     pilotAbility: 9,
@@ -180,9 +180,9 @@ const pilots = [
     shipHull: 5,
     shipActions: ["foco", "target"],
     shipAbility: "Ao atacar em alcance 2-3, você pode rerolar qualquer de seus resultados em branco.",
-    shipMod: "Melhoria de Escudo: aumente o valor de escudo em 1",
-    shipModCost: 4,
-    shipShieldExtra: 1,
+    shipMod: "Interface Experimental: uma vez por rodada, após realizar uma ação, você pode realizar uma ação gratuita de uma carta de Melhoria esquipada com o cabeçalho 'Ação:'. Então recebe uma ficha de extresse.",
+    shipModCost: 3,
+    shipShieldExtra: 0,
     shipHullExtra: 0,
     shipWeaponsExtra: 0,
     shipManeuverExtra: 0,
@@ -190,9 +190,9 @@ const pilots = [
     shipUpdates: [
       [{droids: [R2d6], max: 1, cost: 1 }, {torres: [TorreCanhaoIonico], max: 1, cost: 5 }], 
       [{elite: [Competencia], max: 1, cost: 4 }, {tripulação: ["sem"], max: 1, cost: 0 }], 
-      [{torpedos: [TorpedosDardos, TorpedosIon], max: 2, cost: 7 }, {misseis: ["sem"], max: 1, cost: 0 }]
+      [{torpedos: [ArmamentoBomba, TorpedosProtonAvancados], max: 2, cost: 6 }, {misseis: ["sem"], max: 1, cost: 0 }]
     ],
-    shipBombs: {bombas: ["sem"], max: 1, cost: 0 },
+    shipBombs: {bombas: [RedeConner], max: 1, cost: 4 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
       [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
@@ -230,9 +230,9 @@ const pilots = [
     shipUpdates: [
       [{droids: ["sem"], max: 1, cost: 0 }, {torres: [TorreLaserDupla], max: 1, cost: 4 }], 
       [{elite: ["sem"], max: 1, cost: 0 }, {tripulação: [Atirador], max: 1, cost: 4 }], 
-      [{torpedos: [MunicaoExtra, TorpedoProton, TorpedoProton], max: 3, cost: 4 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 4 }]
+      [{torpedos: [MunicaoExtra, TorpedoProton, TorpedoProton], max: 3, cost: 6 }, {misseis: [MisseisTeleguiados, MisseisTeleguiados], max: 2, cost: 4 }]
     ],
-    shipBombs: {bombas: [RedeConner, RedeConner, BombasIon, BombasIon], max: 4, cost: 4 },
+    shipBombs: {bombas: [RedeConner, RedeConner, BombasIon, BombasIon], max: 4, cost: 6 },
     shipAdvancedUpdates: [
       [{sistemas: ["sem"], max: 1, cost: 0 }, {ilegais: ["sem"], max: 1, cost: 0 }], 
       [{extra01: ["sem"], max: 1, cost: 0 }, {extra01: ["sem"], max: 1, cost: 0 }], 
