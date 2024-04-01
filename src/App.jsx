@@ -9,10 +9,6 @@ function App() {
 
   return (
     <main>
-      <div style={{display:'flex'}}>
-        <Dice/>
-        <Dice/>
-      </div>
       <PilotDetail/>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">

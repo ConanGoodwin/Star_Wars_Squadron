@@ -10,6 +10,7 @@ import StressIcon from '../components/StressIcon';
 import NoWeponIcon from '../components/NoWeponIcon';
 import IonIcon from '../components/IonIcon';
 import { ClearAll } from '../assets/actions';
+import Dice from './Dice';
 
 function PilotDetail() {
   const [oneShot, setOneShot] = useState(false);
@@ -316,6 +317,19 @@ function PilotDetail() {
           </div>
         </div>
       </section>
+
+      <div style={{display:'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
+        <div style={{display:'flex'}}>
+          <Dice/>
+          <Dice/>
+          <Dice/>
+        </div>
+        <div style={{display:'flex'}}>
+          <Dice/>
+          <Dice/>
+          <Dice/>
+        </div>
+      </div>
     </main>
   )
 }
