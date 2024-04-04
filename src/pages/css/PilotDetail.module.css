@@ -65,6 +65,7 @@ span {
   justify-content: center;
   display: flex;
   margin: 10px;
+  /* height: 400px; */
 }
 
 .div_more_upgrade {

@@ -155,7 +155,7 @@
       "componentType": 5126,
       "count": 2,
       "max": [
-        6.041666666666667
+        9.208333333333334
       ],
       "min": [
         0.041666666666666664
@@ -171,9 +171,9 @@
     {
       "bufferView": 6,
       "componentType": 5126,
-      "count": 145,
+      "count": 221,
       "max": [
-        6.041666666666667
+        9.208333333333334
       ],
       "min": [
         0.041666666666666664
@@ -183,7 +183,7 @@
     {
       "bufferView": 7,
       "componentType": 5126,
-      "count": 145,
+      "count": 221,
       "type": "VEC4"
     },
     {
@@ -226,18 +226,18 @@
     },
     {
       "buffer": 0,
-      "byteLength": 580,
+      "byteLength": 884,
       "byteOffset": 988
     },
     {
       "buffer": 0,
-      "byteLength": 2320,
-      "byteOffset": 1568
+      "byteLength": 3536,
+      "byteOffset": 1872
     },
     {
       "buffer": 0,
       "byteLength": 24,
-      "byteOffset": 3888
+      "byteOffset": 5408
     }
   ],
   "samplers": [
@@ -249,7 +249,7 @@
   "buffers": [
     {
       "uri": "diceAttack_data.bin",
-      "byteLength": 3912
+      "byteLength": 5432
     }
   ]
 }

@@ -237,16 +237,16 @@ function PilotDetail() {
               <button id='clear' onClick={clearAllActions} className={PilotDetailStyle.button_clear_all_actions}>
                 <img src={ClearAll} onClick={clearAllActions} role='button' alt="" />
               </button>
-              <span style={{textAlign: 'center'}}>clear all actions</span>
+              <span style={{textAlign: 'center'}}>clear</span>
             </div>
             <div>
               <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
-              {"<.[" + (index + 1) + "].>"}
+              {"<[" + (index + 1) + "]>"}
               <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
             </div>
             <div className={PilotDetailStyle.div_more_upgrade}>
               <button id='moreUpdtae' onClick={() => ""} className={PilotDetailStyle.button_more_upgrade}>+</button>
-              more upgrades
+              more upg.
             </div>
           </div>
           Total Points Used: {totalCost}
@@ -304,7 +304,7 @@ function PilotDetail() {
                 </div>
                 {"<>"}
                 <div>
-                  Nome do Piloto:
+                  Nome Piloto:
                   <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
                 </div>
               </div>
@@ -319,16 +319,7 @@ function PilotDetail() {
       </section>
 
       <div style={{display:'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
-        <div style={{display:'flex'}}>
-          <Dice/>
-          <Dice/>
-          <Dice/>
-        </div>
-        <div style={{display:'flex'}}>
-          <Dice/>
-          <Dice/>
-          <Dice/>
-        </div>
+        <Dice/>
       </div>
     </main>
   )
