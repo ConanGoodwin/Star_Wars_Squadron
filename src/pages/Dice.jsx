@@ -49,15 +49,6 @@ function Dice() {
     }
     setTime(timer);
     start();
-
-    // console.log(target.innerText
-    // setKey(!key)
-    
-    // (target.innerText === 'girar') ? target.innerText = 'reset' : target.innerText = 'girar';
-    // setTimer(Math.floor(Math.random() * (10 - 2) + 2));
-    // (type === 'attack') ? 
-    //   setCountAttack(countAttack.map((iten, index) => index === cell ? !iten: iten)) : 
-    //   setCountDefense(countDefense.map((iten, index) => index === cell ? !iten: iten));
   }
 
   return (
@@ -67,7 +58,7 @@ function Dice() {
           qtCell(3, 'attack').map((cell) => 
             <div style={{border:'3px double black'}} key={cell}>
               <div className="App">
-                <DiceAttack play={countAttack[cell]} key={key} time={timer}/>
+                <DiceAttack play={countAttack[cell]} key={key} time={timer} type={'attack'}/>
               </div>
               <div>
                 <button disabled={disabledAttack[cell]} onClick={() => rollDice({cell,type:'attack'})} name={cell} style={{margin:'5px'}}>girar</button>
@@ -81,7 +72,7 @@ function Dice() {
           qtCell(3, 'defense').map((cell) => 
             <div style={{border:'3px double black'}} key={cell}>
               <div className="App">
-                <DiceAttack play={countDefense[cell]} key={key} time={timer}/>
+                <DiceAttack play={countDefense[cell]} key={key} time={timer} type={'defense'}/>
               </div>
               <div>
                 <button disabled={disabledDefense[cell]} onClick={() => rollDice({cell,type:'defense'})} name={cell} style={{margin:'5px'}}>girar</button>

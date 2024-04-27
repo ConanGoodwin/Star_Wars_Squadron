@@ -209,7 +209,7 @@ function PilotDetail({version}) {
          {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
           <div style={{position:'absolute', top: '-25px', left: '57px', cursor: dicesOff ? 'pointer' : 'not-allowed'}} onClick={() => setDicesOff(!dicesOff)}>
-            <DiceAttack zoom={20} play={dicesOff} key={dicesOff}/>
+            <DiceAttack zoom={20} play={dicesOff} key={dicesOff} type={'icon'}/>
           </div>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_level_div}>
