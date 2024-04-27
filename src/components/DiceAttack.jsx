@@ -5,9 +5,14 @@ import { Canvas } from "@react-three/fiber"
 import { Model } from "../components/DiceAttack3D"
 // import { OrbitControls } from "@react-three/drei"
 
-function Dice({play, time}) {
+function Dice({play, time, zoom = 10.45}) {
   const [count, setCount] = useState(play);
   const [timeCount, setTimeCount] = useState(time);
+  const [keyState, setKeyState] = useState(play);
+
+  useEffect(() => {
+    setKeyState(play);
+  },[play]);
 
   useEffect(() => {
     setCount(play);
@@ -19,10 +24,10 @@ function Dice({play, time}) {
 
   return (
     <div className="App">
-      <Canvas camera={{ fov: 30, position: [10.45, 0, 0] }} style={{width:'80px', height:'130px'}}>
+      <Canvas camera={{ fov: 30, position: [zoom, 0, 0] }} style={{width:'80px', height:'130px'}}>
         <ambientLight intensity={5} />
         {/* <OrbitControls enableZoom={true} /> */}
-        <Model play={count} time={timeCount}/>
+        <Model play={count} time={timeCount} key={keyState}/>
       </Canvas>
     </div>
   )
@@ -31,6 +36,8 @@ function Dice({play, time}) {
 Dice.propTypes = {
   play: PropTypes.bool.isRequired,
   time: PropTypes.number.isRequired,
+  zoom: PropTypes.number.isRequired,
+  key: PropTypes.bool.isRequired,
 }
 
 export default Dice

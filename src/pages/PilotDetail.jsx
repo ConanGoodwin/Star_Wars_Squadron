@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TargetAtack from '../assets/target_atack.png';
 import TargetDefense from '../assets/target_defense.png';
-import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
+import {CarrouselCard, DiceAttack, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
 import Gabarito from '../components/Gabarito';
@@ -21,6 +21,7 @@ function PilotDetail({version}) {
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
+  const [dicesOff, setDicesOff] = useState(true);
   const [actionsActive] = useState(
     pilot.shipActions.reduce((obj,chave) => {
       obj[chave] = 0;
@@ -207,6 +208,9 @@ function PilotDetail({version}) {
       <section className={PilotDetailStyle.main_section}>
          {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
+          <div style={{position:'absolute', top: '-25px', left: '57px', cursor: dicesOff ? 'pointer' : 'not-allowed'}} onClick={() => setDicesOff(!dicesOff)}>
+            <DiceAttack zoom={20} play={dicesOff} key={dicesOff}/>
+          </div>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_level_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
@@ -319,7 +323,7 @@ function PilotDetail({version}) {
         </div>
       </section>
 
-      <div style={{display:'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
+      <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
         <Dice/>
       </div>
     </main>

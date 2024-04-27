@@ -49,7 +49,7 @@ export function Model(props) {
     }
 
     go();
-    console.log(paused);
+    // console.log(paused);
   }, [actions, paused, setTime, showTime, timer]);
 
   return (
