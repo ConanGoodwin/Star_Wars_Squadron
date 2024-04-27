@@ -22,7 +22,8 @@ function PilotDetail({version}) {
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
   const [dicesOff, setDicesOff] = useState(true);
-  const [qtAttackDice, setQtAttackDice] = useState(pilots[index].shipWeapons);
+  const [qtAttackDice, setQtAttackDice] = useState(pilots[index].shipWeapons + pilots[index].shipWeaponsExtra);
+  const [qtDefenseDice, setQtDefenseDice] = useState(pilot.shipManeuver + pilot.shipManeuverExtra);
   const [actionsActive] = useState(
     pilot.shipActions.reduce((obj,chave) => {
       obj[chave] = 0;
@@ -46,8 +47,11 @@ function PilotDetail({version}) {
 
   useEffect(
     () => {
-      if (dicesOff) setQtAttackDice(pilots[index].shipWeapons + pilots[index].shipWeaponsExtra)
-    },[dicesOff, index]
+      if (dicesOff) {
+        setQtAttackDice(pilots[index].shipWeapons + pilots[index].shipWeaponsExtra)
+        setQtDefenseDice(pilot.shipManeuver + pilot.shipManeuverExtra)
+      }
+    },[dicesOff, index, pilot.shipManeuver, pilot.shipManeuverExtra]
   );
 
   useEffect(
@@ -222,20 +226,14 @@ function PilotDetail({version}) {
               At
               <button 
                 style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
-                onClick={() => {
-                  // setDicesOff(false);
-                  console.log('MAIS')
-                }}
+                onClick={() => setQtAttackDice(qtAttackDice + 1)}
               >+</button>
               <div style={{fontSize:'small', padding:'0'}}>
-                <input value={0} style={{border:'none', backgroundColor:'rgba(0, 71, 71, .3)', textAlign:'center', fontSize:'small', width:'15px', height:'15px', margin: '2px', padding: '0'}}/>
+                <input value={qtAttackDice} style={{border:'none', backgroundColor:'rgba(0, 71, 71, .3)', textAlign:'center', fontSize:'small', width:'15px', height:'15px', margin: '2px', padding: '0'}}/>
               </div>
               <button 
                 style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
-                onClick={() => {
-                  // setDicesOff(true);
-                  console.log('MENOS')
-                }}
+                onClick={() => setQtAttackDice(qtAttackDice - 1 === 0 ? 1 : qtAttackDice - 1)}
               >-</button>
             </div>
             <div style={{backgroundColor:'rgba(0, 71, 71, .7)', height: '80px', display:'flex', flexDirection:'column', position:'absolute', top:'22px', left: '83px', alignItems:'center'}}>
@@ -245,20 +243,14 @@ function PilotDetail({version}) {
               De
               <button 
                 style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
-                onClick={() => {
-                  setDicesOff(true);
-                  console.log('MAIS')
-                }}
+                onClick={() => setQtDefenseDice(qtDefenseDice + 1)}
               >+</button>
               <div style={{fontSize:'small', padding:'0'}}>
-                <input value={0} style={{border:'none', backgroundColor:'rgba(0, 71, 71, .3)', textAlign:'center', fontSize:'small', width:'15px', height:'15px', margin: '2px', padding: '0'}}/>
+                <input value={qtDefenseDice} style={{border:'none', backgroundColor:'rgba(0, 71, 71, .3)', textAlign:'center', fontSize:'small', width:'15px', height:'15px', margin: '2px', padding: '0'}}/>
               </div>
               <button 
                 style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
-                onClick={() => {
-                  setDicesOff(true);
-                  console.log('MENOS')
-                }}
+                onClick={() => setQtDefenseDice(qtDefenseDice - 1 === 0 ? 1 : qtDefenseDice - 1)}
               >-</button>
             </div>
           </div>
@@ -375,7 +367,7 @@ function PilotDetail({version}) {
       </section>
 
       <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
-        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver + pilot.shipManeuverExtra}/>
+        <Dice attackQt={qtAttackDice} defenseQt={qtDefenseDice}/>
       </div>
     </main>
   )
