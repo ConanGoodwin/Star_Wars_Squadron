@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types';
 import { DiceAttack } from '../components';
 import useTimer from 'react-hook-time';
 // import { OrbitControls } from "@react-three/drei"
 
-function Dice() {
+function Dice({attackQt, defenseQt}) {
   const [countAttack, setCountAttack] = useState([]);
   const [countDefense, setCountDefense] = useState([]);
   const [disabledAttack, setDisabledAttack] = useState([]);
@@ -55,7 +56,7 @@ function Dice() {
     <div style={{border:'3px double black', padding:'2px'}}>
       <div name='DiceAttack' style={{display:'flex'}}>
         {
-          qtCell(3, 'attack').map((cell) => 
+          qtCell(attackQt, 'attack').map((cell) => 
             <div style={{border:'3px double black'}} key={cell}>
               <div className="App">
                 <DiceAttack play={countAttack[cell]} key={key} time={timer} type={'attack'}/>
@@ -69,7 +70,7 @@ function Dice() {
       </div>
       <div name='DiceDefense' style={{display:'flex'}}>
         {
-          qtCell(3, 'defense').map((cell) => 
+          qtCell(defenseQt, 'defense').map((cell) => 
             <div style={{border:'3px double black'}} key={cell}>
               <div className="App">
                 <DiceAttack play={countDefense[cell]} key={key} time={timer} type={'defense'}/>
@@ -83,6 +84,11 @@ function Dice() {
       </div>
     </div>
   )
+}
+
+Dice.propTypes = {
+  attackQt: PropTypes.number,
+  defenseQt: PropTypes.number
 }
 
 export default Dice

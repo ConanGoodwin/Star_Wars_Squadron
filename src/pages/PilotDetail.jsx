@@ -22,6 +22,7 @@ function PilotDetail({version}) {
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
   const [dicesOff, setDicesOff] = useState(true);
+  const [qtAttackDice, setQtAttackDice] = useState(pilots[index].shipWeapons);
   const [actionsActive] = useState(
     pilot.shipActions.reduce((obj,chave) => {
       obj[chave] = 0;
@@ -42,6 +43,12 @@ function PilotDetail({version}) {
   // const [qtExtra, setQtExtra] = useState(ships[index].qtExtra);
   const [qtExtra, setQtExtra] = useState(0);
   // const [value,setValue] = useState(0);
+
+  useEffect(
+    () => {
+      if (dicesOff) setQtAttackDice(pilots[index].shipWeapons)
+    },[dicesOff, index]
+  );
 
   useEffect(
     () => {
@@ -324,7 +331,7 @@ function PilotDetail({version}) {
       </section>
 
       <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
-        <Dice/>
+        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver}/>
       </div>
     </main>
   )
