@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: medium;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
 }
 
 .pilot {

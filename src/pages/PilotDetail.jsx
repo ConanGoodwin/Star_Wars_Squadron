@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import TargetAtack from '../assets/target_atack.png';
 import TargetDefense from '../assets/target_defense.png';
-import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
+import {CarrouselCard, DiceAttack, PilotCard, PilotShield, TxtArea} from '../components'
 import { PilotDetailStyle } from './css'
 import pilots from '../data/pilots';
 import Gabarito from '../components/Gabarito';
@@ -10,15 +11,18 @@ import StressIcon from '../components/StressIcon';
 import NoWeponIcon from '../components/NoWeponIcon';
 import IonIcon from '../components/IonIcon';
 import { ClearAll } from '../assets/actions';
+import Dice from './Dice';
 
-function PilotDetail() {
+function PilotDetail({version}) {
   const [oneShot, setOneShot] = useState(false);
   const [key, setKey] = useState(false);
   const [index, setIndex] = useState(0);
-  const [pilot, setPilot] = useState(pilots[0]);
+  const [pilot, setPilot] = useState(version === 10 ? pilots[0]: null);
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
+  const [dicesOff, setDicesOff] = useState(true);
+  const [qtAttackDice, setQtAttackDice] = useState(pilots[index].shipWeapons);
   const [actionsActive] = useState(
     pilot.shipActions.reduce((obj,chave) => {
       obj[chave] = 0;
@@ -39,6 +43,12 @@ function PilotDetail() {
   // const [qtExtra, setQtExtra] = useState(ships[index].qtExtra);
   const [qtExtra, setQtExtra] = useState(0);
   // const [value,setValue] = useState(0);
+
+  useEffect(
+    () => {
+      if (dicesOff) setQtAttackDice(pilots[index].shipWeapons)
+    },[dicesOff, index]
+  );
 
   useEffect(
     () => {
@@ -205,6 +215,9 @@ function PilotDetail() {
       <section className={PilotDetailStyle.main_section}>
          {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
+          <div style={{position:'absolute', top: '-25px', left: '57px', cursor: dicesOff ? 'pointer' : 'not-allowed'}} onClick={() => setDicesOff(!dicesOff)}>
+            <DiceAttack zoom={20} play={dicesOff} key={dicesOff} type={'icon'}/>
+          </div>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_level_div}>
             {pilot.pilotAbility + pilot.pilotExtraAbility}
@@ -236,16 +249,16 @@ function PilotDetail() {
               <button id='clear' onClick={clearAllActions} className={PilotDetailStyle.button_clear_all_actions}>
                 <img src={ClearAll} onClick={clearAllActions} role='button' alt="" />
               </button>
-              <span style={{textAlign: 'center'}}>clear all actions</span>
+              <span style={{textAlign: 'center'}}>clear</span>
             </div>
             <div>
               <button id='prev' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{"<"}</button>
-              {"<.[" + (index + 1) + "].>"}
+              {"<[" + (index + 1) + "]>"}
               <button id='next' onClick={navClickButton} onKeyDown={navClickButton} tabIndex="0">{">"}</button>
             </div>
             <div className={PilotDetailStyle.div_more_upgrade}>
               <button id='moreUpdtae' onClick={() => ""} className={PilotDetailStyle.button_more_upgrade}>+</button>
-              more upgrades
+              more upg.
             </div>
           </div>
           Total Points Used: {totalCost}
@@ -303,7 +316,7 @@ function PilotDetail() {
                 </div>
                 {"<>"}
                 <div>
-                  Nome do Piloto:
+                  Nome Piloto:
                   <input type="text" name="" id="" className={PilotDetailStyle.txtInfoTarget} />
                 </div>
               </div>
@@ -316,8 +329,16 @@ function PilotDetail() {
           </div>
         </div>
       </section>
+
+      <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
+        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver}/>
+      </div>
     </main>
   )
+}
+
+PilotDetail.propTypes = {
+  version: PropTypes.number
 }
 
 export default PilotDetail

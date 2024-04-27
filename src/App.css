@@ -1,3 +1,29 @@
+@font-face {
+  font-family: 'StarBorda';
+  src: url('/src/assets/fonts/StarJediOutline-y0xm.ttf');
+}
+
+@font-face {
+  font-family: 'StarBold';
+  src: url('/src/assets/fonts/RebellionItalic-4vR6.ttf');
+}
+
+@font-face {
+  font-family: 'StarWarsVazio';
+  src: url('/src/assets/fonts/StarJediHollow-A4lL.ttf');
+}
+
+@font-face {
+  font-family: 'StarWars';
+  src: url('/src/assets/fonts/StarJediRounded-jW3R.ttf');
+}
+
+#root {
+  font-family: 'StarBold';
+  /* font-family: 'StarWarsVazio'; */
+  /* font-family: 'StarWars'; */
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
