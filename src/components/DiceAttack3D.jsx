@@ -11,8 +11,9 @@ import useTimer from 'react-hook-time'
 
 export function Model(props) {
   const group = useRef()
-  const {play, time} = props;
+  const {play, time, type} = props;
   const [paused, setPaused] = useState(play);
+  const [typeIcon, setTypeIcon] = useState((type === 'icon'));
   const { nodes, materials, animations } = useGLTF('../src/components/diceAttack.glb')
   const { actions } = useAnimations(animations, group);
   const [timer, setTimer] = useState(time);
@@ -37,6 +38,15 @@ export function Model(props) {
   }, [start]);
 
   useLayoutEffect(() => {
+    if (typeIcon) {
+      console.log('reset');
+      actions.DiceAction.stop();
+      actions.DiceAction.paused = true;
+      setTypeIcon(false);
+      // setPaused(true);
+      // reset();
+      return;
+    }
     const go = async () => {
       if (!paused) {
         actions.DiceAction.reset();
@@ -50,7 +60,7 @@ export function Model(props) {
 
     go();
     // console.log(paused);
-  }, [actions, paused, setTime, showTime, timer]);
+  }, [actions, paused, reset, setTime, showTime, timer, typeIcon]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -63,7 +73,7 @@ export function Model(props) {
 
 Model.propTypes = {
   play: PropTypes.bool,
-  key: PropTypes.number.isRequired,
+  type: PropTypes.string,
   time: PropTypes.number.isRequired,
 }
 

@@ -46,7 +46,7 @@ function PilotDetail({version}) {
 
   useEffect(
     () => {
-      if (dicesOff) setQtAttackDice(pilots[index].shipWeapons)
+      if (dicesOff) setQtAttackDice(pilots[index].shipWeapons + pilots[index].shipWeaponsExtra)
     },[dicesOff, index]
   );
 
@@ -215,8 +215,52 @@ function PilotDetail({version}) {
       <section className={PilotDetailStyle.main_section}>
          {/* COLUNA DE STATS PILOTO */}
         <div className={PilotDetailStyle.flex_column}>
-          <div style={{position:'absolute', top: '-25px', left: '57px', cursor: dicesOff ? 'pointer' : 'not-allowed'}} onClick={() => setDicesOff(!dicesOff)}>
-            <DiceAttack zoom={20} play={dicesOff} key={dicesOff} type={'icon'}/>
+          <div style={{display:'flex', position:'absolute', top: '-25px', left: '57px', cursor: dicesOff ? 'pointer' : 'not-allowed'}}>
+            <div style={{width:'60px', height:'90px', position:'absolute', top:'20px', zIndex:'2'}} onClick={() => setDicesOff(!dicesOff)}>.</div>
+            <DiceAttack zoom={20} play={dicesOff} key={dicesOff} type={'icone'}/>
+            <div style={{fontSize: 'medium', backgroundColor:'rgba(0, 71, 71, .3)', display:'flex', flexDirection:'column', position:'absolute', top:'22px', left: '55px', alignItems:'center'}}>
+              At
+              <button 
+                style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
+                onClick={() => {
+                  // setDicesOff(false);
+                  console.log('MAIS')
+                }}
+              >+</button>
+              <div style={{fontSize:'small', padding:'0'}}>
+                <input value={0} style={{border:'none', backgroundColor:'rgba(0, 71, 71, .3)', textAlign:'center', fontSize:'small', width:'15px', height:'15px', margin: '2px', padding: '0'}}/>
+              </div>
+              <button 
+                style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
+                onClick={() => {
+                  // setDicesOff(true);
+                  console.log('MENOS')
+                }}
+              >-</button>
+            </div>
+            <div style={{backgroundColor:'rgba(0, 71, 71, .7)', height: '80px', display:'flex', flexDirection:'column', position:'absolute', top:'22px', left: '83px', alignItems:'center'}}>
+              <span>|</span>
+            </div>
+            <div style={{backgroundColor:'rgba(0, 71, 71, .3  )', display:'flex', flexDirection:'column', position:'absolute', top:'22px', left: '90px', alignItems:'center'}}>
+              De
+              <button 
+                style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
+                onClick={() => {
+                  setDicesOff(true);
+                  console.log('MAIS')
+                }}
+              >+</button>
+              <div style={{fontSize:'small', padding:'0'}}>
+                <input value={0} style={{border:'none', backgroundColor:'rgba(0, 71, 71, .3)', textAlign:'center', fontSize:'small', width:'15px', height:'15px', margin: '2px', padding: '0'}}/>
+              </div>
+              <button 
+                style={{fontSize:'small', width:'20px', height:'19px', padding: '0'}}
+                onClick={() => {
+                  setDicesOff(true);
+                  console.log('MENOS')
+                }}
+              >-</button>
+            </div>
           </div>
           <PilotCard image={pilot.image} typeCard="pilot"  txtAltImg="pilot" />
           <div className={PilotDetailStyle.float_div + " " + PilotDetailStyle.position_level_div}>
@@ -331,7 +375,7 @@ function PilotDetail({version}) {
       </section>
 
       <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
-        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver}/>
+        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver + pilot.shipManeuverExtra} typeIcon={dicesOff} key={key}/>
       </div>
     </main>
   )

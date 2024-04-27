@@ -10,6 +10,7 @@ import { Model as ModelDefense } from "../components/DiceDefense3D"
 function Dice({play, time, zoom = 10.45, type}) {
   const [count, setCount] = useState(play);
   const [timeCount, setTimeCount] = useState(time);
+  // console.log(type);
   // const [keyState, setKeyState] = useState(play);
 
   // useEffect(() => {
@@ -31,8 +32,8 @@ function Dice({play, time, zoom = 10.45, type}) {
         {/* <OrbitControls enableZoom={true} /> */}
         {
           type === 'defense' ? 
-            <ModelDefense play={count} time={timeCount}/> :
-            <Model play={count} time={timeCount}/>
+            <ModelDefense play={count} time={timeCount} type={type}/> :
+            <Model play={count} time={timeCount} type={type}/>
         }
       </Canvas>
     </div>

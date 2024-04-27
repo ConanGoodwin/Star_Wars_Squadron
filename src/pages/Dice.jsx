@@ -4,13 +4,13 @@ import { DiceAttack } from '../components';
 import useTimer from 'react-hook-time';
 // import { OrbitControls } from "@react-three/drei"
 
-function Dice({attackQt, defenseQt}) {
+function Dice({attackQt, defenseQt,typeIcon}) {
   const [countAttack, setCountAttack] = useState([]);
   const [countDefense, setCountDefense] = useState([]);
   const [disabledAttack, setDisabledAttack] = useState([]);
   const [disabledDefense, setDisabledDefense] = useState([]);
   const [key] = useState(false);
-  const [timer, setTimer] = useState(6);
+  const [timer, setTimer] = useState(4);
   const { setTime, start, reset } = useTimer(3, {
     onEnd: async () => {
       console.log("fim");
@@ -53,13 +53,13 @@ function Dice({attackQt, defenseQt}) {
   }
 
   return (
-    <div style={{border:'3px double black', padding:'2px'}}>
+    <div style={{border:'3px double black', padding:'2px', backgroundColor:'rgba(0, 71, 71, .2)'}}>
       <div name='DiceAttack' style={{display:'flex'}}>
         {
           qtCell(attackQt, 'attack').map((cell) => 
             <div style={{border:'3px double black'}} key={cell}>
               <div className="App">
-                <DiceAttack play={countAttack[cell]} key={key} time={timer} type={'attack'}/>
+                <DiceAttack play={countAttack[cell]} key={key} time={timer} type={typeIcon ? 'attack' : 'icon'}/>
               </div>
               <div>
                 <button disabled={disabledAttack[cell]} onClick={() => rollDice({cell,type:'attack'})} name={cell} style={{margin:'5px'}}>girar</button>
@@ -88,7 +88,8 @@ function Dice({attackQt, defenseQt}) {
 
 Dice.propTypes = {
   attackQt: PropTypes.number,
-  defenseQt: PropTypes.number
+  defenseQt: PropTypes.number,
+  typeIcon: PropTypes.bool
 }
 
 export default Dice
