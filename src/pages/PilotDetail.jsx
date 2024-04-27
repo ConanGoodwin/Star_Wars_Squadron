@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import TargetAtack from '../assets/target_atack.png';
 import TargetDefense from '../assets/target_defense.png';
 import {CarrouselCard, PilotCard, PilotShield, TxtArea} from '../components'
@@ -12,11 +13,11 @@ import IonIcon from '../components/IonIcon';
 import { ClearAll } from '../assets/actions';
 import Dice from './Dice';
 
-function PilotDetail() {
+function PilotDetail({version}) {
   const [oneShot, setOneShot] = useState(false);
   const [key, setKey] = useState(false);
   const [index, setIndex] = useState(0);
-  const [pilot, setPilot] = useState(pilots[0]);
+  const [pilot, setPilot] = useState(version === 10 ? pilots[0]: null);
   const [shieldShip, setShieldShip] = useState(pilot.shipShield + pilot.shipShieldExtra);
   const [hullShip,setHullShip] = useState(pilot.shipHull + pilot.shipHullExtra);
   const [lifeShip, setLifeShip] = useState(shieldShip  + hullShip);
@@ -323,6 +324,10 @@ function PilotDetail() {
       </div>
     </main>
   )
+}
+
+PilotDetail.propTypes = {
+  version: PropTypes.number
 }
 
 export default PilotDetail

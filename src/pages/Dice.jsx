@@ -1,12 +1,25 @@
 import { useState } from 'react'
 import { DiceAttack } from '../components';
+import useTimer from 'react-hook-time';
 // import { OrbitControls } from "@react-three/drei"
 
 function Dice() {
   const [countAttack, setCountAttack] = useState([]);
   const [countDefense, setCountDefense] = useState([]);
-  const [key, setKey] = useState(false);
+  const [disabledAttack, setDisabledAttack] = useState([]);
+  const [disabledDefense, setDisabledDefense] = useState([]);
+  const [key] = useState(false);
   const [timer, setTimer] = useState(6);
+  const { setTime, start, reset } = useTimer(3, {
+    onEnd: async () => {
+      console.log("fim");
+      setCountAttack(countAttack.map(() => true));
+      setCountDefense(countDefense.map(() => true));
+      setDisabledAttack(disabledAttack.map(() => false));
+      setDisabledDefense(disabledDefense.map(() => false));
+      reset();
+    },
+  });
 
   const qtCell = (qt, type) => {
     const cells = [];
@@ -15,12 +28,36 @@ function Dice() {
       cells.push(i);
       if (type === 'attack') {
         countAttack.push(true);
+        disabledAttack.push(false);
       } else {
         countDefense.push(true);
+        disabledDefense.push(false);
       }
     }
 
     return cells;
+  }
+
+  const rollDice = async ({cell,type}) => {
+    setTimer(Math.floor(Math.random() * (10 - 2) + 2));
+    if (type === 'attack') { 
+      setCountAttack(countAttack.map((iten, index) => index === cell ? false: iten));
+      setDisabledAttack(disabledAttack.map((iten, index) => index === cell ? true: iten));
+    } else {
+      setCountDefense(countDefense.map((iten, index) => index === cell ? false: iten));
+      setDisabledDefense(disabledDefense.map((iten, index) => index === cell ? true: iten));
+    }
+    setTime(timer);
+    start();
+
+    // console.log(target.innerText
+    // setKey(!key)
+    
+    // (target.innerText === 'girar') ? target.innerText = 'reset' : target.innerText = 'girar';
+    // setTimer(Math.floor(Math.random() * (10 - 2) + 2));
+    // (type === 'attack') ? 
+    //   setCountAttack(countAttack.map((iten, index) => index === cell ? !iten: iten)) : 
+    //   setCountDefense(countDefense.map((iten, index) => index === cell ? !iten: iten));
   }
 
   return (
@@ -33,12 +70,7 @@ function Dice() {
                 <DiceAttack play={countAttack[cell]} key={key} time={timer}/>
               </div>
               <div>
-                <button onClick={({target}) => {
-                  // setKey(!key)
-                  (target.innerText === 'girar') ? target.innerText = 'reset' : target.innerText = 'girar';
-                  setTimer(Math.floor(Math.random() * (10 - 2) + 2));
-                  setCountAttack(countAttack.map((iten, index) => index === cell ? !iten: iten))
-                }} style={{margin:'5px'}}>girar</button>
+                <button disabled={disabledAttack[cell]} onClick={() => rollDice({cell,type:'attack'})} name={cell} style={{margin:'5px'}}>girar</button>
               </div>
             </div>
           )
@@ -52,12 +84,7 @@ function Dice() {
                 <DiceAttack play={countDefense[cell]} key={key} time={timer}/>
               </div>
               <div>
-              <button onClick={({target}) => {
-                  // setKey(!key)
-                  (target.innerText === 'girar') ? target.innerText = 'reset' : target.innerText = 'girar';
-                  setTimer(Math.floor(Math.random() * (10 - 2) + 2));
-                  setCountDefense(countDefense.map((iten, index) => index === cell ? !iten: iten))
-                }} style={{margin:'5px'}}>girar</button>
+                <button disabled={disabledDefense[cell]} onClick={() => rollDice({cell,type:'defense'})} name={cell} style={{margin:'5px'}}>girar</button>
               </div>
             </div>
           )
