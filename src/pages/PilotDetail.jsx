@@ -375,7 +375,7 @@ function PilotDetail({version}) {
       </section>
 
       <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
-        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver + pilot.shipManeuverExtra} typeIcon={dicesOff} key={key}/>
+        <Dice attackQt={qtAttackDice} defenseQt={pilot.shipManeuver + pilot.shipManeuverExtra}/>
       </div>
     </main>
   )
