@@ -17,11 +17,11 @@ function PilotShield({shieldValue, hullValue, changeLifeChip, damageShieldShip, 
   const [qtHull, setQtHull] = useState([1, 2, 3, 4, 5, 6]);
   const [typeDamageHull,setTypeDamageHull] = useState([[0,0,0,0,0,0]]);
 
-  // useEffect(() => {
-  //   for (let i = 0; i < qtPilot; i++) {
-  //     typeDamageHull.push([0, 0, 0, 0, 0, 0]);
-  //   }
-  // },[qtPilot, typeDamageHull]);
+  useEffect(() => {
+    for (let i = 0; i < qtPilot; i++) {
+      typeDamageHull.push([0, 0, 0, 0, 0, 0]);
+    }
+  },[qtPilot, typeDamageHull]);
 
   // useEffect(() => {
   //     if (qtShield.length < shieldValue) {

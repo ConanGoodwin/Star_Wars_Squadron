@@ -366,7 +366,7 @@ function PilotDetail({version}) {
         </div>
       </section>
 
-      <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '100px', left: '775px'}}>
+      <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '60px', left: '775px'}}>
         <Dice attackQt={qtAttackDice} defenseQt={qtDefenseDice}/>
       </div>
     </main>

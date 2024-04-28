@@ -39,8 +39,10 @@ function Dice({attackQt, defenseQt,typeIcon}) {
     return cells;
   }
 
-  const rollDice = async ({cell,type}) => {
-    setTimer(Math.floor(Math.random() * (10 - 2) + 2));
+  const rollDice = async ({cell,type,secs}) => {
+    const temp = Math.floor(Math.random() * (10 - 2) + 2);
+    (secs === -1) ? (type === 'attack') ? setTimer(4) : setTimer(5) : setTimer(temp);
+    (secs === -1) ? (type === 'attack') ? setTimer(4) : setTimer(5) : setTimer(temp);
     if (type === 'attack') { 
       setCountAttack(countAttack.map((iten, index) => index === cell ? false: iten));
       setDisabledAttack(disabledAttack.map((iten, index) => index === cell ? true: iten));
@@ -48,7 +50,7 @@ function Dice({attackQt, defenseQt,typeIcon}) {
       setCountDefense(countDefense.map((iten, index) => index === cell ? false: iten));
       setDisabledDefense(disabledDefense.map((iten, index) => index === cell ? true: iten));
     }
-    setTime(timer);
+    (secs === -1) ? setTime(4) : setTime(temp);
     start();
   }
 
@@ -57,12 +59,13 @@ function Dice({attackQt, defenseQt,typeIcon}) {
       <div name='DiceAttack' style={{display:'flex'}}>
         {
           qtCell(attackQt, 'attack').map((cell) => 
-            <div style={{border:'3px double black'}} key={cell}>
+            <div style={{border:'3px double black', display:'flex',flexDirection:'column', alignItems:'center'}} key={cell}>
               <div className="App">
                 <DiceAttack play={countAttack[cell]} key={key} time={timer} type={typeIcon ? 'attack' : 'icon'}/>
               </div>
-              <div>
-                <button disabled={disabledAttack[cell]} onClick={() => rollDice({cell,type:'attack'})} name={cell} style={{margin:'5px'}}>girar</button>
+              <div style={{display:'flex', flexDirection:'column'}}>
+                <button disabled={disabledAttack[cell]} onClick={() => rollDice({cell,type:'attack',secs: timer})} name={cell} style={{margin:'5px'}}>girar</button>
+                <button disabled={disabledAttack[cell]} onClick={() => rollDice({cell,type:'attack', secs: -1})} name={cell} style={{margin:'5px'}}>foco</button>
               </div>
             </div>
           )
@@ -71,12 +74,13 @@ function Dice({attackQt, defenseQt,typeIcon}) {
       <div name='DiceDefense' style={{display:'flex'}}>
         {
           qtCell(defenseQt, 'defense').map((cell) => 
-            <div style={{border:'3px double black'}} key={cell}>
+            <div style={{border:'3px double black', display:'flex', flexDirection:'column', alignItems:'center'}} key={cell}>
               <div className="App">
                 <DiceAttack play={countDefense[cell]} key={key} time={timer} type={'defense'}/>
               </div>
-              <div>
+              <div style={{display:'flex', flexDirection:'column'}}>
                 <button disabled={disabledDefense[cell]} onClick={() => rollDice({cell,type:'defense'})} name={cell} style={{margin:'5px'}}>girar</button>
+                <button disabled={disabledDefense[cell]} onClick={() => rollDice({cell,type:'defense', secs: -1})} name={cell} style={{margin:'5px'}}>foco</button>
               </div>
             </div>
           )
