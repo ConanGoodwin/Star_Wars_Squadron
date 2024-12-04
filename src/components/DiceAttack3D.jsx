@@ -14,7 +14,7 @@ export function Model(props) {
   const {play, time, type} = props;
   const [paused, setPaused] = useState(play);
   const [typeIcon, setTypeIcon] = useState((type === 'icon'));
-  const { nodes, materials, animations } = useGLTF('../src/components/diceAttack.glb')
+  const { nodes, materials, animations } = useGLTF('../src/components/diceAttack.gltf')
   const { actions } = useAnimations(animations, group);
   const [timer, setTimer] = useState(time);
   const { setTime, start, reset } = useTimer(3, {
@@ -77,4 +77,4 @@ Model.propTypes = {
   time: PropTypes.number.isRequired,
 }
 
-useGLTF.preload('../src/components/diceAttack.glb')
+useGLTF.preload('../src/components/diceAttack.gltf')

@@ -49,8 +49,8 @@ function PilotDetail({version}) {
     () => {
       if (dicesOff) {
         setQtAttackDice(pilots[index].shipWeapons + pilots[index].shipWeaponsExtra)
-        setQtDefenseDice(pilot.shipManeuver + pilot.shipManeuverExtra)
       }
+      setQtDefenseDice(pilot.shipManeuver + pilot.shipManeuverExtra)
     },[dicesOff, index, pilot.shipManeuver, pilot.shipManeuverExtra]
   );
 
@@ -366,7 +366,7 @@ function PilotDetail({version}) {
         </div>
       </section>
 
-      <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '60px', left: '775px'}}>
+      <div style={{display: dicesOff ? 'none' : 'flex', flexDirection:'column', position:'absolute', top: '60px', left: '745px'}}>
         <Dice attackQt={qtAttackDice} defenseQt={qtDefenseDice}/>
       </div>
     </main>
